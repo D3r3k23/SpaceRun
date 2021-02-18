@@ -23,7 +23,7 @@ def play(screen):
         events()
 
 def draw(screen):
-    screen.fill(BLACK)
+    screen.fill(BLACK) # Or space background
 
     for asteroid in asteroids:
         asteriod.draw(screen)
