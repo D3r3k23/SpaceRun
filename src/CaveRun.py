@@ -1,24 +1,43 @@
-
 #!/usr/bin/env python3
 
+import Game
 import pygame
 
-pygame.init()
+def quit():
+    pygame.quit()
+    sys.exit()
+
+def run():
+    screen = pygame.display.set_mode((1280, 720))
+
+    # Menu
+    
+    startButton
+    quitButton
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                quit()
+
+            elif event.type == pygame.MOUSEBUTTONUP:
+                pos = pygame.mouse.get_pos()
+
+                if startButton clicked:
+                    Game.play(screen)
+                elif quitButton clicked:
+                    quit()
 
 if __name__ == "__main__":
-    size = width, height = 320, 240
-    speed = [2, 2]
-    black = 0, 0, 0
+    pygame.init()
+    run()
 
-    screen = pygame.display.set_mode(size)
+
 
     ball = pygame.image.load("resources/ball.gif")
     ballrect = ball.get_rect()
 
     while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT: sys.exit()
-        
         ballrect = ballrect.move(speed)
         if ballrect.left < 0 or ballrect.right > width:
             speed[0] = -speed[0]
