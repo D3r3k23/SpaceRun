@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import Game
+import Resources
 import pygame
 
 def quit():
@@ -9,6 +10,7 @@ def quit():
 
 def run():
     screen = pygame.display.set_mode((1280, 720))
+    Resources.load_resources()
 
     # Menu
 

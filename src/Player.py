@@ -1,4 +1,5 @@
 
+import Resources.images
 import pygame
 
 SPEED = 5
