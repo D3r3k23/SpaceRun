@@ -14,7 +14,7 @@ def load_image(fn):
     try:
         surf = pygame.image.load(fp)
     except pygame.error:
-        raise SystemExit(f'Could not load image: {fp}, {pygame.get_error}')
+        raise SystemExit(f'Could not load image: {fp}, {pygame.get_error}') # Not needed???
     return surf.convert()
 
 def load_sound(fn):
