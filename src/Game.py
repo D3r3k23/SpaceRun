@@ -1,11 +1,12 @@
 
 from Colors import *
+#from Player import Player
 import pygame
 import time
 
 running = False
 score = 0
-player = Player()
+#player = Player()
 asteroids = []
 
 def play(screen):

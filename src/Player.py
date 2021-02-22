@@ -1,12 +1,13 @@
 
-import Resources.images
+from Resources import images
+from Resources import sounds
 import pygame
 
 SPEED = 5
 
 class Player:
     def __init__(self):
-        self.sprite = pygame.image.load("resources/spaceship.png")
+        self.sprite = images[Player]
         self.rect = sprite.get_rect()
 
         self.posX = 20

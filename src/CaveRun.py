@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
+# Not needed??? Or path to venv: venv/bin/python
 
+from Button import Button
+from Colors import *
 import Game
 import Resources
 import pygame
@@ -10,12 +13,14 @@ def quit():
 
 def run():
     screen = pygame.display.set_mode((1280, 720))
-    Resources.load_resources()
+    Resources.load()
 
-    # Menu
 
-    startButton
-    quitButton
+    ##### Menu ####
+
+    start = Button(640, 360, 80, 30, BLUE, WHITE, 'Corbel', 25, 'Start')
+    quit  = Button(640, 275, 80, 30, RED,  WHITE, 'Corbel', 15, 'Quit' )
+
 
     while True:
         for event in pygame.event.get():
@@ -25,10 +30,10 @@ def run():
             elif event.type == pygame.MOUSEBUTTONUP:
                 pos = pygame.mouse.get_pos()
 
-                if startButton clicked:
-                    Game.play(screen)
-                elif quitButton clicked:
-                    quit()
+                #if startButton clicked:
+                #    Game.play(screen)
+                #elif quitButton clicked:
+                #    quit()
 
 if __name__ == "__main__":
     pygame.init()
