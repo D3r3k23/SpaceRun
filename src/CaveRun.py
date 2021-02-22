@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# Not needed??? Or path to venv: venv/bin/python
 
 from Button import Button
 from Colors import *
