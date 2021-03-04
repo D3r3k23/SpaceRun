@@ -1,5 +1,6 @@
 
 from Colors import *
+
 import pygame
 
 class Button:
@@ -12,4 +13,4 @@ class Button:
         # self.text = self.font.render(text, True, textColor)
     
     def draw(self, screen):
-        
+        pass

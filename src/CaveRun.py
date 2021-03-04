@@ -4,6 +4,10 @@ from Button import Button
 from Colors import *
 import Game
 import Resources
+
+import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = 'True'
+
 import pygame
 
 def quit():
