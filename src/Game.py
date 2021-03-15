@@ -1,30 +1,30 @@
 
-from Colors import *
-#from Player import Player
+from Colors  import *
+from Player  import Player
+from CaveRun import exit
 
 import pygame
 import time
 
-running = False
-score = 0
-#player = Player()
-asteroids = []
-
 def play(screen):
     running = True
-    prevTime = time.time()
+    score = 0
+    player = Player()
+    asteroids = []
 
+    prevTime = time.time()
+    
     while running:
         newTime = time.time()
         ts = newTime - prevTime
         prevTime = newTime
 
-        draw(screen)
+        draw(screen, player, asteroids)
         player.move(ts)
         collisions()
         events()
 
-def draw(screen):
+def draw(screen, player, asteroids):
     screen.fill(BLACK) # Or space background
 
     for asteroid in asteroids:
@@ -42,5 +42,4 @@ def collisions():
 def events():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
+            exit()

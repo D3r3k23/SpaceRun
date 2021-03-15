@@ -25,8 +25,8 @@ def load_sound(fn):
     return sound
 
 def load():
-    images['Start' ] = load_image('start_button.png')
-    images['Exit'  ] = load_image('exit_button.png')
-    # images['Player'] = load_image('spaceship.png')
+    images['Start'    ] = load_image('start_button.png')
+    images['Exit'     ] = load_image('exit_button.png')
+    images['Spaceship'] = load_image('spaceship.png')
 
     # sounds['PlayerDeath'] = load_sound('explosion1')
