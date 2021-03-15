@@ -19,10 +19,14 @@ def play(screen):
         ts = newTime - prevTime
         prevTime = newTime
 
-        draw(screen, player, asteroids)
-        player.move(ts)
-        collisions()
         events()
+        
+        player.move(ts)
+        for asteroid in asteroids:
+            asteroid.move(ts)
+        
+        collisions()
+        draw(screen, player, asteroids)
 
 def draw(screen, player, asteroids):
     screen.fill(BLACK) # Or space background
