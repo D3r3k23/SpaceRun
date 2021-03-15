@@ -34,9 +34,9 @@ def run():
                 pos = pygame.mouse.get_pos()
 
                 if start.contains(pos):
-                   Game.play(screen)
+                    Game.play(screen)
                 elif exit.contains(pos):
-                   exit()
+                    exit()
 
         screen.fill(BLACK)
         start.draw(screen)
