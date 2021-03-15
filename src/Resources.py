@@ -7,7 +7,6 @@ resource_dir = 'resources'
 images = {}
 sounds = {}
 
-
 def load_image(fn):
     fp = os.path.join(resource_dir, fn)
     try:
