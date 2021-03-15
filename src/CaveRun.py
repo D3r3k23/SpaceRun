@@ -2,15 +2,16 @@
 
 from Button import Button
 from Colors import *
-import Game
 import Resources
+import Game
 
+import sys
 import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = 'True'
 
 import pygame
 
-def quit():
+def exit():
     pygame.quit()
     sys.exit()
 
@@ -19,10 +20,10 @@ def run():
     Resources.load()
 
 
-    ##### Menu ####
+    #----- Menu -----#
 
-    start = Button(640, 360, 80, 30, BLUE, WHITE, 'Corbel', 25, 'Start')
-    quit  = Button(640, 275, 80, 30, RED,  WHITE, 'Corbel', 15, 'Quit' )
+    start = Button(640, 320, Resources.images['Start'])
+    exit  = Button(640, 460, Resources.images['Exit' ])
 
 
     while True:
@@ -33,10 +34,15 @@ def run():
             elif event.type == pygame.MOUSEBUTTONUP:
                 pos = pygame.mouse.get_pos()
 
-                #if startButton clicked:
-                #    Game.play(screen)
-                #elif quitButton clicked:
-                #    quit()
+                if start.contains(pos):
+                   Game.play(screen)
+                elif exit.contains(pos):
+                   quit()
+
+        screen.fill(BLACK)
+        start.draw(screen)
+        exit.draw(screen)
+        pygame.display.flip()
 
 if __name__ == "__main__":
     pygame.init()
