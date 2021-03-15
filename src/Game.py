@@ -26,6 +26,7 @@ def play(screen):
             asteroid.move(ts)
         
         collisions()
+        
         draw(screen, player, asteroids)
 
 def draw(screen, player, asteroids):
