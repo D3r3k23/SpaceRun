@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 
 import Resources
 
@@ -22,8 +21,8 @@ def run():
 
     #----- Menu -----#
 
-    start = Button(640, 320, Resources.images['Start'])
-    exit  = Button(640, 460, Resources.images['Exit'])
+    startButton = Button(640, 320, Resources.images['Start'])
+    exitButton  = Button(640, 460, Resources.images['Exit'])
 
     while True:
         for event in pygame.event.get():
@@ -33,14 +32,14 @@ def run():
             elif event.type == pygame.MOUSEBUTTONUP:
                 pos = pygame.mouse.get_pos()
 
-                if start.contains(pos):
+                if startButton.contains(pos):
                     Game.play(screen)
-                elif exit.contains(pos):
+                elif exitButton.contains(pos):
                     exit()
 
         screen.fill(BLACK)
-        start.draw(screen)
-        exit.draw(screen)
+        startButton.draw(screen)
+        exitButton.draw(screen)
         pygame.display.flip()
 
 if __name__ == "__main__":

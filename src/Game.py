@@ -33,7 +33,7 @@ def draw(screen, player, asteroids):
     screen.fill(BLACK) # Or space background
 
     for asteroid in asteroids:
-        asteriod.draw(screen)
+        asteroid.draw(screen)
     
     player.draw(screen)
 
