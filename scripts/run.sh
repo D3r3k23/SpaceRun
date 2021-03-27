@@ -1,2 +1,2 @@
 
-venv/bin/python src/CaveRun.py
+venv/bin/python src/Main.py

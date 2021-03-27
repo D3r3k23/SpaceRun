@@ -1,36 +1,40 @@
 
+from Drawable import Drawable
 import Resources
+from Util import *
 
 import pygame
 
-SPEED = 75
+ACCEL_FACTOR = 20
+SPEED_FACTOR = 40
 
-class Player:
-    def __init__(self):
-        image  = Resources.images['Spaceship']
-        width  = image.get_width()
-        height = image.get_height()
+MAX_SPEED = 10
 
-        x = 200
-        y = 360
+class Player(Drawable):
+    def __init__(self, screen):
+        img    = Resources.images['Spaceship']
+        width  = img.get_width()
+        height = img.get_height()
+
+        x, y = 200, 360 # Starting position
         origin = (x - (width / 2), y - (height / 2))
+        rect   = pygame.Rect(origin, (width, height))
 
         self.posY  = y
         self.velY  = 0.0
-        self.image = image
-        self.rect  = pygame.Rect(origin, (width, height))
+        self.acelY = 0.0
+
+        super().__init__(screen, img, rect)
     
     def move(self, ts):
         if pygame.key.get_pressed()[pygame.K_SPACE]:
-            self.velY = -1.0
+            self.acelY = -1.0
         else:
-            self.velY = 1.0
+            self.acelY = 1.0
 
-        self.posY += SPEED * self.velY * ts
+        self.velY += ACCEL_FACTOR * self.acelY * ts
+        self.velY = clamp(self.velY, -MAX_SPEED, MAX_SPEED)
+
+        self.posY += SPEED_FACTOR * self.velY * ts
+
         self.rect.centery = self.posY
-
-    def draw(self, screen):
-        screen.blit(self.image, self.rect)
-
-# acelY = 1.0, -1.0
-# ts: velY += acelY

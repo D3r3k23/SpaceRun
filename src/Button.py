@@ -1,20 +1,14 @@
 
-from Colors import *
+from Drawable import Drawable
 
 import pygame
 
-class Button:
+class Button(Drawable):
     # Center X and Y coordinates, pygame.Surface
-    def __init__(self, x, y, image):
-        width  = image.get_width()
-        height = image.get_height()
+    def __init__(self, screen, x, y, img):
+        width  = img.get_width()
+        height = img.get_height()
         origin = (x - (width / 2), y - (height / 2))
+        rect   = pygame.Rect(origin, (width, height))
 
-        self.image = image
-        self.rect  = pygame.Rect(origin, (width, height))
-    
-    def draw(self, screen):
-        screen.blit(self.image, self.rect)
-    
-    def contains(self, pos):
-        return self.rect.collidepoint(pos)
+        super().__init__(screen, img, rect)

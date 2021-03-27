@@ -1,2 +1,3 @@
 
-venv\Scripts\python src\CaveRun.py
+@echo OFF
+venv\Scripts\python.exe src\Main.py
