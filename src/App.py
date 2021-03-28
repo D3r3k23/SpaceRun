@@ -33,8 +33,7 @@ def handle_app_event(event):
             Resources.music.volume_down()
             return True
 
-    else: # Event not handled
-        return False
+    return False # Event not handled
     
 
 import Resources

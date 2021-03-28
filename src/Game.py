@@ -4,36 +4,45 @@ from Player   import Player
 from Asteroid import Asteroid
 from App      import exit, handle_app_event
 
-import time
+from time import time
 import pygame
 
 class Game:
     def __init__(self, screen):
-        self.screen    = screen
-        self.running   = False
-        self.player    = Player(screen)
+        self.screen  = screen
+        self.running = False
+        self.paused  = False
+
+        self.player = Player(screen)
+        self.score  = 0
+
         self.asteroids = []
-        self.score     = 0
+        self.prevFrameTime = 0
 
     def play(self):
         self.running = True
-        prevTime = time.time()
+        self.prevFrameTime = time()
 
         while self.running:
-            newTime = time.time()
-            ts = newTime - prevTime
-            prevTime = newTime
-            
-            self.player.move(ts)
+            ts = self.get_timestep()
 
-            for asteroid in self.asteroids:
-                asteroid.move(ts)
-            
-            self.handle_collisions()
+            if not self.paused:
+                self.player.move(ts)
 
-            self.handle_events()
-            
-            self.draw()
+                for asteroid in self.asteroids:
+                    asteroid.move(ts)
+                
+                self.handle_collisions()
+
+                self.handle_events()
+                
+                self.draw()
+    
+    def get_timestep(self):
+        newFrameTime = time()
+        ts = newFrameTime - self.prevFrameTime
+        self.prevFrameTime = newFrameTime
+        return ts
 
     def draw(self):
         self.screen.fill(BLACK) # Or space background
@@ -48,7 +57,7 @@ class Game:
         pygame.display.flip()
 
     def handle_collisions(self):
-        if not self.screen.get_rect().colliderect(self.player.rect):
+        if not self.player.in_bounds():
             self.running = False
         
         for asteroid in self.asteroids:
@@ -58,9 +67,15 @@ class Game:
     def handle_events(self):
         for event in pygame.event.get():
             if not handle_app_event(event):
-                if event.type == pygame.QUIT:
-                    # Close application
-                    exit()
-                elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                    # Return to menu
-                    self.running = False
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        if self.paused:
+                            self.unpause()
+                        else:
+                            self.pause()
+    
+    def pause(self):
+        self.paused = True
+    
+    def unpause(self):
+        self.paused = False

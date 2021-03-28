@@ -48,3 +48,6 @@ class Player(Drawable):
     
     def is_alive(self):
         return self.alive
+    
+    def in_bounds(self):
+        return (-20 < self.rect.bottom) and (self.rect.top < self.screen.get_height())

@@ -1,6 +1,8 @@
 
-/venv/
 /.vscode/
+/.VSCodeCounter/
+/venv/
+/pyinstaller/
 
 **/__pycache__/
 *.mp3
