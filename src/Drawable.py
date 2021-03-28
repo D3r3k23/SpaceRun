@@ -9,6 +9,3 @@ class Drawable:
     
     def draw(self):
         self.screen.blit(self.img, self.rect)
-    
-    def contains(self, pos):
-        return self.rect.collidepoint(pos)
