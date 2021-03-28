@@ -5,7 +5,7 @@ import pygame
 
 class Asteroid(Drawable):
     def __init__(self, screen):
-        # img  = Resources.images['Asteroid']
+        img = Resources.images['Asteroid']
 
         super().__init__(screen, img, rect)
       
