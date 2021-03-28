@@ -12,8 +12,7 @@ music = Music()
 
 # Loads single image
 def load_image(fn):
-    dir = os.path.join(resource_dir, 'images')
-    fp  = os.path.join(dir, fn)
+    fp = os.path.join(resource_dir, 'images', fn)
     try:
         surf = pygame.image.load(fp)
     except (pygame.error, FileNotFoundError):
@@ -23,8 +22,7 @@ def load_image(fn):
 
 # Loads single sound
 def load_sound(fn):
-    dir = os.path.join(resource_dir, 'sounds')
-    fp  = os.path.join(dir, fn)
+    fp = os.path.join(resource_dir, 'sounds', fn)
     try:
         sound = pygame.mixer.Sound(fp)
     except (pygame.error, FileNotFoundError):
@@ -33,19 +31,19 @@ def load_sound(fn):
     return sound
 
 def get_song_path(fn):
-    dir = os.path.join(resource_dir, 'music')
-    fp  = os.path.join(dir, fn)
-    return fp
-
+    return os.path.join(resource_dir, 'music', fn)
 
 # Loads all resources
 def load():
+    # Images
     images['Start'    ] = load_image('start_button.png')
     images['Exit'     ] = load_image('exit_button.png')
     images['Spaceship'] = load_image('spaceship.png')
 
+    # Sounds
     # sounds['PlayerDeath'] = load_sound('explosion1')
 
+    # Music
     music.add_song(get_song_path('The Prototypes - Pale Blue Dot.mp3'))
     music.add_song(get_song_path('Teddy Killerz - Outer Space.mp3'))
     music.add_song(get_song_path('Phace & Misanthrop - Desert Orgy.mp3'))
@@ -56,5 +54,4 @@ def load():
     music.add_song(get_song_path('Ed Rush & Optical - Mystery Machine.mp3'))
     music.add_song(get_song_path('Ed Rush & Optical - Fixation.mp3'))
     music.add_song(get_song_path('Andy C - Quest (Bladerunner Remix).mp3'))
-
     music.shuffle()
