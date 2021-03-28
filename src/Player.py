@@ -3,7 +3,7 @@ from Drawable import Drawable
 import Resources
 from Util import *
 
-import time
+from time import time
 import pygame
 
 ACCEL_FACTOR = 25
@@ -44,7 +44,7 @@ class Player(Drawable):
     
     def kill(self):
         self.alive = False
-        self.timeOfDeath = time.time()
+        self.timeOfDeath = time()
     
     def is_alive(self):
         return self.alive
