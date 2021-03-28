@@ -9,7 +9,7 @@ if __name__ == '__main__':
     # Setup Pygame
     os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = 'True'
     pygame.init()
-    pygame.display.set_caption('Cave Run')
+    pygame.display.set_caption('CaveRun')
     screen = pygame.display.set_mode((1280, 720))
     
     # Load resources and run app
