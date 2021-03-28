@@ -4,7 +4,7 @@ Simple cave runner game written in Python using Pygame
 
 
 ## Controls
-| Button |   Function    |
+| Button | Function      |
 |--------|---------------|
 | Space  | Apply thrust  |
 | Escape | Menu          |
