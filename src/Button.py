@@ -12,3 +12,6 @@ class Button(Drawable):
         rect   = pygame.Rect(origin, (width, height))
 
         super().__init__(screen, img, rect)
+    
+    def contains(self, pos):
+        return self.rect.collidepoint(pos)
