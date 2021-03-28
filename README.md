@@ -9,10 +9,10 @@ Simple cave runner game written in Python using Pygame
 |--------|---------------|
 | Space  | Apply thrust  |
 | Escape | Pause/unpause |
-| Right  | Next song     |
-| Left   | Previous song |
 | Up     | Volume up     |
 | Down   | Volume down   |
+| Right  | Next song     |
+| Left   | Previous song |
 
 
 ## TODO
