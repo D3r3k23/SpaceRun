@@ -1,7 +1,8 @@
 
-from Colors import *
-from Player import Player
-from App    import exit
+from Colors   import *
+from Player   import Player
+from Asteroid import Asteroid
+from App      import exit, handle_app_event
 
 import time
 import pygame
@@ -16,20 +17,21 @@ class Game:
 
     def play(self):
         self.running = True
-        
         prevTime = time.time()
+
         while self.running:
             newTime = time.time()
             ts = newTime - prevTime
             prevTime = newTime
-
-            self.handle_events()
             
             self.player.move(ts)
+
             for asteroid in self.asteroids:
                 asteroid.move(ts)
             
             self.handle_collisions()
+
+            self.handle_events()
             
             self.draw()
 
@@ -55,5 +57,10 @@ class Game:
         
     def handle_events(self):
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                exit()
+            if not handle_app_event(event):
+                if event.type == pygame.QUIT:
+                    # Close application
+                    exit()
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                    # Return to menu
+                    self.running = False

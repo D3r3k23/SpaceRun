@@ -1,9 +1,13 @@
 
+from Drawable import Drawable
+
 import pygame
 
-class Asteroid:
-    def __init__(self):
-        pass
+class Asteroid(Drawable):
+    def __init__(self, screen):
+        # img    = Resources.images['Spaceship']
+
+        super().__init__(screen, img, rect)
       
     def move(self, ts):
         pass

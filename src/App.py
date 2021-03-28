@@ -7,6 +7,36 @@ def exit():
     pygame.quit()
     sys.exit()
 
+# Handle app-level events, returns True if event handled
+def handle_app_event(event):
+    if event.type == pygame.QUIT:
+        exit()
+    
+    elif event.type == Resources.Music.SONG_END:
+        Resources.music.next_song()
+        return True
+    
+    elif event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_RIGHT:
+            Resources.music.next_song()
+            return True
+        
+        elif event.key == pygame.K_LEFT:
+            Resources.music.prev_song()
+            return True
+        
+        elif event.key == pygame.K_UP:
+            Resources.music.volume_up()
+            return True
+        
+        elif event.key == pygame.K_DOWN:
+            Resources.music.volume_down()
+            return True
+
+    else: # Event not handled
+        return False
+    
+
 import Resources
 from Game   import Game
 from Button import Button
@@ -19,17 +49,18 @@ def run(screen):
 
     while True:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                exit()
+            if not handle_app_event(event):
+                if event.type == pygame.MOUSEBUTTONUP:
+                    pos = pygame.mouse.get_pos()
 
-            elif event.type == pygame.MOUSEBUTTONUP:
-                pos = pygame.mouse.get_pos()
+                    if startButton.contains(pos):
+                        # Start button pressed
+                        game = Game(screen)
+                        exitCode = game.play()
 
-                if startButton.contains(pos):
-                    game = Game(screen)
-                    exitCode = game.play()
-                elif exitButton.contains(pos):
-                    exit()
+                    elif exitButton.contains(pos):
+                        # Exit button pressed
+                        exit()
 
         screen.fill(BLACK)
         startButton.draw()
