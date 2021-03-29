@@ -28,10 +28,11 @@ class Player(Drawable):
         self.alive = True
     
     def move(self, ts):
-        if is_key_pressed(pygame.K_SPACE):
-            self.acelY = -1.0
-        else:
-            self.acelY = 1.0
+        if self.alive:
+            if is_key_pressed(pygame.K_SPACE):
+                self.acelY = -1.0
+            else:
+                self.acelY = 1.0
 
         self.velY += ACCEL_FACTOR * self.acelY * ts
         self.velY = clamp(self.velY, -MAX_SPEED, MAX_SPEED)
@@ -42,7 +43,8 @@ class Player(Drawable):
     
     def kill(self):
         self.alive = False
-        self.timeOfDeath = time()
+        self.acelY = 0.0
+        self.velY  = 0.0
     
     def is_alive(self):
         return self.alive
@@ -55,7 +57,6 @@ class Player(Drawable):
     
     def inc_score(self):
         self.score += 1
-        print(self.score)
     
     def get_speed(self):
         return sqrt(self.score)
