@@ -5,4 +5,4 @@
 /pyinstaller/
 
 **/__pycache__/
-*.mp3
+*.ogg

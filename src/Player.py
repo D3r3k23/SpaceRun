@@ -9,7 +9,7 @@ import pygame
 ACCEL_FACTOR = 25
 SPEED_FACTOR = 40
 
-MAX_SPEED = 10
+MAX_SPEED = 15
 
 class Player(Drawable):
     def __init__(self, screen):

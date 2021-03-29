@@ -26,4 +26,5 @@ Simple cave runner game written in Python using Pygame
 * Smoke from player during acceleration
 * Space/planet surface background in game
 * Asteroids have constant speed, player speed increases
+* Add icon
 * PyInstaller
