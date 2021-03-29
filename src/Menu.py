@@ -1,5 +1,6 @@
 
 from Button import Button
+from Text   import Text
 from Util   import *
 from Colors import *
 from App    import handle_app_event
@@ -10,9 +11,11 @@ import pygame
 class Menu:
     def __init__(self, screen):
         self.screen = screen
-        self.playButton = Button(self.screen, 'Play', 490, 360)
-        self.exitButton = Button(self.screen, 'Exit', 790, 360)
-
+        self.playButton = Button(self.screen, 'Play', 540, 420)
+        self.exitButton = Button(self.screen, 'Exit', 740, 420)
+        self.title = Text(screen, 'Cave Run',
+            'SpaceSquadron', 108, GREEN, 640, 250)
+        
     class Choice(Enum):
         NONE = 0
         PLAY = 1
@@ -37,6 +40,9 @@ class Menu:
                             return self.Choice.EXIT
 
             self.screen.fill(BLACK)
+
             self.playButton.draw()
             self.exitButton.draw()
+            self.title.draw()
+
             pygame.display.flip()

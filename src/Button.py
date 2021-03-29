@@ -5,11 +5,16 @@ import Resources
 
 import pygame
 
+SIZE = 150
+
 class Button(Drawable):
     # Center X and Y coordinates, pygame.Surface
     def __init__(self, screen, name, x, y):
-        self.img_normal = Resources.images[name]
-        self.img_active = Resources.images[name + '_active']
+        img_normal = Resources.images[name]
+        img_active = Resources.images[name + '_active']
+
+        self.img_normal = pygame.transform.scale(img_normal, (SIZE, SIZE))
+        self.img_active = pygame.transform.scale(img_active, (SIZE, SIZE))
 
         super().__init__(screen, self.img_normal, x, y)
         

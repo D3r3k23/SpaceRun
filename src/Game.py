@@ -2,8 +2,8 @@
 import Resources
 from Colors   import *
 from Util     import *
+from Text     import Text
 from Score    import Score
-from GameOver import GameOver
 from Player   import Player
 from Asteroid import Asteroid
 from App      import handle_app_event
@@ -21,7 +21,9 @@ class Game:
 
         self.player = Player(screen)
         self.score  = Score(screen)
-        self.gameOverText = GameOver(screen)
+
+        self.gameOver = Text(screen, 'GAME OVER!',
+            'SpaceSquadron', 64, RED, 640, 360)
 
         self.asteroids = []
         self.sinceLastSpawn = 0.0
@@ -62,7 +64,7 @@ class Game:
         self.player.draw()
         self.score.draw()
         if not self.player.is_alive():
-            self.gameOverText.draw()
+            self.gameOver.draw()
         
         pygame.display.flip()
     
@@ -102,7 +104,6 @@ class Game:
                     if event.key == pygame.K_ESCAPE:
                         if self.player.is_alive():
                             self.toggle_paused()
-                        
                         else:
                             self.running = False
     
