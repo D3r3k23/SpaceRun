@@ -45,6 +45,10 @@ class Player(Drawable):
         self.alive = False
         self.acelY = 0.0
         self.velY  = 0.0
+
+        self.img = Resources.images['Explosion5']
+
+        # Play explosion sound
     
     def is_alive(self):
         return self.alive

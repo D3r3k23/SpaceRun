@@ -1,6 +1,9 @@
 
+import Resources
 from Colors   import *
 from Util     import *
+from Score    import Score
+from GameOver import GameOver
 from Player   import Player
 from Asteroid import Asteroid
 from App      import handle_app_event
@@ -15,9 +18,11 @@ class Game:
         self.screen   = screen
         self.running  = False
         self.paused   = False
-        self.gameOver = False
 
         self.player = Player(screen)
+        self.score  = Score(screen)
+        self.gameOverText = GameOver(screen)
+
         self.asteroids = []
         self.sinceLastSpawn = 0.0
         self.prevFrameTime = 0
@@ -35,13 +40,12 @@ class Game:
                 self.move_asteroids(ts)
                 self.despawn_asteroids()
                 
-                if not self.gameOver:
+                if self.player.is_alive():
                     if self.check_asteroid_spawn(ts):
                         self.spawn_asteroid()
                 
                 self.handle_collisions()
-
-                self.draw()
+                self.render()
     
     def get_timestep(self):
         newFrameTime = time()
@@ -49,25 +53,27 @@ class Game:
         self.prevFrameTime = newFrameTime
         return ts
 
-    def draw(self):
+    def render(self):
         self.screen.fill(BLACK) # Or space background
 
         for asteroid in self.asteroids:
             asteroid.draw()
         
         self.player.draw()
-
-        # Draw score
-
+        self.score.draw()
+        if not self.player.is_alive():
+            self.gameOverText.draw()
+        
         pygame.display.flip()
     
     def move_asteroids(self, ts):
         for asteroid in self.asteroids:
             asteroid.move(ts)
-            if not asteroid.pastPlayer:
+            if not asteroid.pastPlayer and self.player.is_alive():
                 if asteroid.rect.right < self.player.rect.left:
                     asteroid.pass_player()
                     self.player.inc_score()
+                    self.score.update(self.player.get_score())
     
     def check_asteroid_spawn(self, ts):
         self.sinceLastSpawn += ts
@@ -94,11 +100,14 @@ class Game:
             if not handle_app_event(event):
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
-                        self.toggle_paused()
+                        if self.player.is_alive():
+                            self.toggle_paused()
+                        
+                        else:
+                            self.running = False
     
     def game_over(self):
         self.player.kill()
-        self.gameOver = True
     
     def pause(self):
         self.paused = True
