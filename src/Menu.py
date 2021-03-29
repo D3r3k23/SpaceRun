@@ -9,6 +9,11 @@ from enum import Enum
 import pygame
 
 class Menu:
+    class Choice(Enum):
+        NONE = 0
+        PLAY = 1
+        EXIT = 2
+
     def __init__(self, screen):
         self.screen = screen
         self.playButton = Button(self.screen, 'Play', 540, 420)
@@ -16,33 +21,33 @@ class Menu:
         self.title = Text(screen, 'Cave Run',
             'SpaceSquadron', 108, GREEN, 640, 250)
         
-    class Choice(Enum):
-        NONE = 0
-        PLAY = 1
-        EXIT = 2
-
-# Runs the app menu
+    # Runs the app menu
     def run(self):
         while True:
-            for event in pygame.event.get():
-                if not handle_app_event(event):
-                    if event.type == pygame.KEYUP:
-                        if event.key == pygame.K_SPACE:
-                            return self.Choice.PLAY
+            self.handle_events()
+            self.render()
+        
+    def handle_events(self):
+        for event in pygame.event.get():
+            if not handle_app_event(event):
+                if event.type == pygame.KEYUP:
+                    if event.key == pygame.K_SPACE:
+                        return self.Choice.PLAY
 
-                    elif event.type == pygame.MOUSEBUTTONUP:
-                        pos = get_mouse_pos()
+                elif event.type == pygame.MOUSEBUTTONUP:
+                    pos = get_mouse_pos()
 
-                        if self.playButton.contains(pos):
-                            return self.Choice.PLAY
+                    if self.playButton.contains(pos):
+                        return self.Choice.PLAY
 
-                        elif self.exitButton.contains(pos):
-                            return self.Choice.EXIT
+                    elif self.exitButton.contains(pos):
+                        return self.Choice.EXIT
 
-            self.screen.fill(BLACK)
+    def render(self):
+        self.screen.fill(BLACK)
 
-            self.playButton.draw()
-            self.exitButton.draw()
-            self.title.draw()
+        self.playButton.draw()
+        self.exitButton.draw()
+        self.title.draw()
 
-            pygame.display.flip()
+        pygame.display.flip()

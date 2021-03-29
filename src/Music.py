@@ -8,7 +8,7 @@ VOLUME_INIT = 0.2
 VOLUME_STEP = 0.025
 VOLUME_MAX  = 0.8
 
-class Music():
+class Music:
     SONG_END = pygame.USEREVENT + 1 # pygame.mixer.music song end event
 
     def __init__(self):
