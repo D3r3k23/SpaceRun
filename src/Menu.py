@@ -23,7 +23,11 @@ class Menu:
         while True:
             for event in pygame.event.get():
                 if not handle_app_event(event):
-                    if event.type == pygame.MOUSEBUTTONUP:
+                    if event.type == pygame.KEYUP:
+                        if event.key == pygame.K_SPACE:
+                            return self.Choice.PLAY
+
+                    elif event.type == pygame.MOUSEBUTTONUP:
                         pos = get_mouse_pos()
 
                         if self.playButton.contains(pos):

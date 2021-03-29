@@ -1,11 +1,14 @@
 
 from Colors   import *
+from Util     import *
 from Player   import Player
 from Asteroid import Asteroid
 from App      import handle_app_event
 
 from time import time
 import pygame
+
+ASTEROID_SPAWN_INT = 2
 
 class Game:
     def __init__(self, screen):
@@ -14,9 +17,8 @@ class Game:
         self.paused  = False
 
         self.player = Player(screen)
-        self.score  = 0
-
         self.asteroids = []
+        self.sinceLastSpawn = 0.0
         self.prevFrameTime = 0
 
     def play(self):
@@ -28,15 +30,17 @@ class Game:
 
             if not self.paused:
                 self.player.move(ts)
-
-                for asteroid in self.asteroids:
-                    asteroid.move(ts)
+                self.move_asteroids(ts)
+                self.despawn_asteroids()
+                
+                self.sinceLastSpawn += ts
+                if self.sinceLastSpawn >= ASTEROID_SPAWN_INT:
+                    self.spawn_asteroid()
                 
                 self.handle_collisions()
 
-                self.handle_events()
-                
-                self.draw()
+            self.handle_events()
+            self.draw()
     
     def get_timestep(self):
         newFrameTime = time()
@@ -55,6 +59,22 @@ class Game:
         # Draw score
 
         pygame.display.flip()
+    
+    def move_asteroids(self, ts):
+        for asteroid in self.asteroids:
+            asteroid.move(ts)
+            if not asteroid.pastPlayer:
+                if asteroid.rect.right < self.player.rect.left:
+                    asteroid.pass_player()
+                    self.player.inc_score()
+    
+    def spawn_asteroid(self):
+        asteroid = Asteroid(self.screen)
+        self.asteroids.append(asteroid)
+        self.sinceLastSpawn = 0.0
+
+    def despawn_asteroids(self):
+        self.asteroids[:] = [ a for a in self.asteroids if not a.toDelete ]
 
     def handle_collisions(self):
         if not self.player.in_bounds():
@@ -69,13 +89,13 @@ class Game:
             if not handle_app_event(event):
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
-                        if self.paused:
-                            self.unpause()
-                        else:
-                            self.pause()
+                        self.toggle_paused()
     
     def pause(self):
         self.paused = True
     
     def unpause(self):
         self.paused = False
+    
+    def toggle_paused(self):
+        self.paused = not self.paused
