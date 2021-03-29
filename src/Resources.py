@@ -15,7 +15,7 @@ def load_image(fn):
     fp = os.path.join(resource_dir, 'images', fn)
     try:
         surf = pygame.image.load(fp)
-    except (pygame.error, FileNotFoundError):
+    except (pygame.error, FileNotFoundError): # Error ????
         raise SystemExit(f'Could not load image: {fp}, {pygame.get_error}')
 
     return surf.convert_alpha() if surf.get_alpha() else surf.convert()

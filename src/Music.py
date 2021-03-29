@@ -54,7 +54,12 @@ class Music():
             
     def play_song(self):
         if self.enabled:
-            pygame.mixer.music.load(self.songs[self.currentSong])
+            try:
+                pygame.mixer.music.load(self.songs[self.currentSong])
+            except pygame.error:
+                self.enabled = False
+                return
+
             pygame.mixer.music.play()
         
     def volume_up(self):
