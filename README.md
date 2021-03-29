@@ -17,7 +17,7 @@ Simple cave runner game written in Python using Pygame
 
 ## TODO
 
-* Asteroids
+* Asteroids (different speed, size)
 * Player gets a point for each asteroid passed
 * Explosion sound on player death
 * Player tilt based on acceleration

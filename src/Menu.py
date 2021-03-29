@@ -10,8 +10,8 @@ import pygame
 class Menu:
     def __init__(self, screen):
         self.screen = screen
-        self.playButton = Button(self.screen, 490, 360, 'Play')
-        self.exitButton = Button(self.screen, 790, 360, 'Exit')
+        self.playButton = Button(self.screen, 'Play', 490, 360)
+        self.exitButton = Button(self.screen, 'Exit', 790, 360)
 
     class Choice(Enum):
         NONE = 0

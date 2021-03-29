@@ -7,16 +7,12 @@ import pygame
 
 class Button(Drawable):
     # Center X and Y coordinates, pygame.Surface
-    def __init__(self, screen, x, y, name):
+    def __init__(self, screen, name, x, y):
         self.img_normal = Resources.images[name]
         self.img_active = Resources.images[name + '_active']
 
-        width  = self.img_normal.get_width()
-        height = self.img_normal.get_height()
-        origin = (x - (width / 2), y - (height / 2))
-        rect   = pygame.Rect(origin, (width, height))
-
-        super().__init__(screen, self.img_normal, rect)
+        super().__init__(screen, self.img_normal, x, y)
+        
         self.hovered = False
     
     def draw(self):

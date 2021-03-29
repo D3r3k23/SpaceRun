@@ -41,6 +41,10 @@ def load():
     images['Exit'       ] = load_image('exit_button.png')
     images['Exit_active'] = load_image('exit_button_active.png')
     images['Spaceship'  ] = load_image('spaceship.png')
+    images['Asteroid1'  ] = load_image('asteroid1.png')
+    images['Asteroid2'  ] = load_image('asteroid2.png')
+    images['Asteroid3'  ] = load_image('asteroid3.png')
+    images['Asteroid4'  ] = load_image('asteroid4.png')
 
     # Sounds
     # sounds['PlayerDeath'] = load_sound('explosion1')
