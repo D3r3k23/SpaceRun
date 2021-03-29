@@ -10,9 +10,7 @@ images = {}
 sounds = {}
 
 music = Music()
-fonts = {
-    'SpaceSquadron': 'space_squadron.ttf'
-}
+fonts = {}
 
 # Loads single image
 def load_image(fn):
@@ -45,7 +43,7 @@ def load_font(name, size):
         return pygame.font.SysFont(None, size)
     else:
         try:
-            font = pygame.font.Font(get_font_path(fonts[name]), size)
+            font = pygame.font.Font(fonts[name], size)
         except (pygame.error, FileNotFoundError):
             return pygame.font.SysFont(None, size) # Default to pygame default font
         
@@ -97,3 +95,7 @@ def load():
     music.add_song(get_song_path('Andy C - Quest (Bladerunner Remix).ogg'))
 
     music.shuffle()
+
+    # Fonts
+
+    fonts['SpaceSquadron'] = get_font_path('space_squadron.ttf')
