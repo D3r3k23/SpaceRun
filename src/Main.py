@@ -16,3 +16,4 @@ if __name__ == '__main__':
     Resources.load()
     Resources.music.start()
     App.run(screen)
+    App.exit()

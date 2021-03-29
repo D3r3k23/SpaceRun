@@ -20,8 +20,12 @@ class Music():
         pygame.mixer.music.set_endevent(Music.SONG_END)
     
     def add_song(self, fp):
-        if os.path.isfile(fp):
-            self.songs.append(fp)
+        try:
+            pygame.mixer.music.load(fp)
+        except pygame.error:
+            return
+
+        self.songs.append(fp)
     
     def shuffle(self):
         random.shuffle(self.songs)
@@ -29,7 +33,7 @@ class Music():
     def start(self):
         pygame.mixer.music.set_volume(VOLUME_INIT)
 
-        if len(self.songs) > 0:
+        if len(self.songs) > 0: # If any songs were loaded
             self.enabled = True
             self.currentSong = 0
             self.play_song()
@@ -54,12 +58,7 @@ class Music():
             
     def play_song(self):
         if self.enabled:
-            try:
-                pygame.mixer.music.load(self.songs[self.currentSong])
-            except pygame.error:
-                self.enabled = False
-                return
-
+            pygame.mixer.music.load(self.songs[self.currentSong])
             pygame.mixer.music.play()
         
     def volume_up(self):

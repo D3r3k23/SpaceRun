@@ -1,4 +1,6 @@
 
+import Resources
+
 import sys
 import pygame
 
@@ -36,32 +38,19 @@ def handle_app_event(event):
     return False # Event not handled
     
 
-import Resources
-from Game   import Game
-from Button import Button
-from Colors import *
+from Game import Game
+from Menu import Menu
 
-# Runs the app menu
 def run(screen):
-    startButton = Button(screen, 640, 320, Resources.images['Start'])
-    exitButton  = Button(screen, 640, 460, Resources.images['Exit'])
+    running = True
+    menu = Menu(screen)
 
-    while True:
-        for event in pygame.event.get():
-            if not handle_app_event(event):
-                if event.type == pygame.MOUSEBUTTONUP:
-                    pos = pygame.mouse.get_pos()
+    while running:
+        choice = menu.run()
 
-                    if startButton.contains(pos):
-                        # Start button pressed
-                        game = Game(screen)
-                        exitCode = game.play()
-
-                    elif exitButton.contains(pos):
-                        # Exit button pressed
-                        exit()
-
-        screen.fill(BLACK)
-        startButton.draw()
-        exitButton.draw()
-        pygame.display.flip()
+        if choice == Menu.Choice.PLAY:
+            game = Game(screen)
+            game.play()
+        
+        elif choice == Menu.Choice.EXIT:
+            running = False

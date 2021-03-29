@@ -15,8 +15,8 @@ def load_image(fn):
     fp = os.path.join(resource_dir, 'images', fn)
     try:
         surf = pygame.image.load(fp)
-    except (pygame.error, FileNotFoundError): # Error ????
-        raise SystemExit(f'Could not load image: {fp}, {pygame.get_error}')
+    except (pygame.error, FileNotFoundError):
+        raise SystemExit('Could not load image: ' + fp)
 
     return surf.convert_alpha() if surf.get_alpha() else surf.convert()
 
@@ -26,7 +26,7 @@ def load_sound(fn):
     try:
         sound = pygame.mixer.Sound(fp)
     except (pygame.error, FileNotFoundError):
-        raise SystemExit(f'Could not load sound: {fp}, {pygame.get_error}')
+        raise SystemExit('Could not load sound: ' + fp)
     
     return sound
 
@@ -36,9 +36,11 @@ def get_song_path(fn):
 # Loads all resources
 def load():
     # Images
-    images['Start'    ] = load_image('start_button.png')
-    images['Exit'     ] = load_image('exit_button.png')
-    images['Spaceship'] = load_image('spaceship.png')
+    images['Play'       ] = load_image('play_button.png')
+    images['Play_active'] = load_image('play_button_active.png')
+    images['Exit'       ] = load_image('exit_button.png')
+    images['Exit_active'] = load_image('exit_button_active.png')
+    images['Spaceship'  ] = load_image('spaceship.png')
 
     # Sounds
     # sounds['PlayerDeath'] = load_sound('explosion1')

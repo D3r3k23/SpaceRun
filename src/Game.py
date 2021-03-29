@@ -2,7 +2,7 @@
 from Colors   import *
 from Player   import Player
 from Asteroid import Asteroid
-from App      import exit, handle_app_event
+from App      import handle_app_event
 
 from time import time
 import pygame

@@ -13,3 +13,6 @@ def clamp(x, min_x, max_x):
 # key: pygame keycode
 def is_key_pressed(key):
     return pygame.key.get_pressed()[key]
+
+def get_mouse_pos():
+    return pygame.mouse.get_pos()

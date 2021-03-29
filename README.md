@@ -17,7 +17,6 @@ Simple cave runner game written in Python using Pygame
 
 ## TODO
 
-* Convert mp3s to ogg or wav
 * Asteroids
 * Player gets a point for each asteroid passed
 * Animations on menu buttons
