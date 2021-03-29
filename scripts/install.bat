@@ -1,5 +1,5 @@
 
-@echo ON
+@echo off
 
 venv\Scripts\activate
 

@@ -15,7 +15,10 @@ class Menu:
         EXIT = 2
 
     def __init__(self, screen):
-        self.screen = screen
+        self.screen  = screen
+        self.running = False
+        self.choice  = self.Choice.NONE
+
         self.playButton = Button(self.screen, 'Play', 540, 420)
         self.exitButton = Button(self.screen, 'Exit', 740, 420)
         self.title = Text(screen, 'Cave Run',
@@ -23,7 +26,8 @@ class Menu:
         
     # Runs the app menu
     def run(self):
-        while True:
+        self.running = True
+        while self.running:
             self.handle_events()
             self.render()
         
@@ -32,16 +36,19 @@ class Menu:
             if not handle_app_event(event):
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_SPACE:
-                        return self.Choice.PLAY
+                        self.choice = self.Choice.PLAY
+                        self.running = False
 
                 elif event.type == pygame.MOUSEBUTTONUP:
                     pos = get_mouse_pos()
 
                     if self.playButton.contains(pos):
-                        return self.Choice.PLAY
+                        self.choice = self.Choice.PLAY
+                        self.running = False
 
                     elif self.exitButton.contains(pos):
-                        return self.Choice.EXIT
+                        self.choice = self.Choice.EXIT
+                        self.running = False
 
     def render(self):
         self.screen.fill(BLACK)
@@ -51,3 +58,6 @@ class Menu:
         self.title.draw()
 
         pygame.display.flip()
+    
+    def get_choice(self):
+        return self.choice

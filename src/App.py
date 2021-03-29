@@ -46,7 +46,8 @@ def run(screen):
     menu = Menu(screen)
 
     while running:
-        choice = menu.run()
+        menu.run()
+        choice = menu.get_choice()
 
         if choice == Menu.Choice.PLAY:
             game = Game(screen)
