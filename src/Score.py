@@ -17,5 +17,5 @@ class Score(Text):
     
     def set_score(self, score):
         self.score = score
-        self.set_text(self.get_string())
+        self.text = self.get_string()
         super().update()

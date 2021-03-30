@@ -13,9 +13,6 @@ class Text(Screen.Drawable):
         img = Text.make_img(self.font, text, color)
         super().__init__(img, x, y)
     
-    def set_text(self, text):
-        self.text = text
-    
     def update(self):
         self.img = Text.make_img(self.font, self.text, self.color)
 

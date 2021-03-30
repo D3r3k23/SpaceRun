@@ -24,7 +24,7 @@ class Game:
         self.running = False
         self.paused  = False
 
-        self.scoreText    = Score()
+        self.scoreText = Score()
         self.player = Player()
 
         self.asteroids = []
@@ -51,23 +51,42 @@ class Game:
                 
                 self.handle_collisions()
                 self.render()
-    
-    def get_timestep(self):
-        newFrameTime = time()
-        ts = newFrameTime - self.prevFrameTime
-        self.prevFrameTime = newFrameTime
-        return ts
 
     def render(self):
         for asteroid in self.asteroids:
             asteroid.draw()
         
         self.player.draw()
+
         self.scoreText.draw()
         if not self.player.is_alive():
             gameOverText.draw()
         
         Screen.display()
+
+    def handle_events(self):
+        for event in pygame.event.get():
+            if not handle_app_event(event):
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        if self.player.is_alive():
+                            self.toggle_paused()
+                        else:
+                            self.running = False
+    
+    def handle_collisions(self):
+        if not self.player.in_bounds():
+            self.game_over()
+        
+        for asteroid in self.asteroids:
+            if GameObject.collision(asteroid, self.player):
+                self.game_over()
+    
+    def get_timestep(self):
+        newFrameTime = time()
+        ts = newFrameTime - self.prevFrameTime
+        self.prevFrameTime = newFrameTime
+        return ts
     
     def move_asteroids(self, ts):
         for asteroid in self.asteroids:
@@ -91,24 +110,6 @@ class Game:
     def despawn_asteroids(self):
         self.asteroids[:] = [ a for a in self.asteroids if not a.toDelete ]
 
-    def handle_collisions(self):
-        if not self.player.in_bounds():
-            self.game_over()
-        
-        for asteroid in self.asteroids:
-            if GameObject.collision(asteroid, self.player):
-                self.game_over()
-
-    def handle_events(self):
-        for event in pygame.event.get():
-            if not handle_app_event(event):
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        if self.player.is_alive():
-                            self.toggle_paused()
-                        else:
-                            self.running = False
-    
     def game_over(self):
         self.player.kill()
     

@@ -29,6 +29,13 @@ class Menu:
         while self.running:
             self.handle_events()
             self.render()
+
+    def render(self):
+        titleText.draw()
+        playButton.draw()
+        exitButton.draw()
+
+        Screen.display()
         
     def handle_events(self):
         for event in pygame.event.get():
@@ -49,13 +56,6 @@ class Menu:
     def choose_item(self, choice):
         self.choice = choice
         self.running = False
-
-    def render(self):
-        titleText.draw()
-        playButton.draw()
-        exitButton.draw()
-
-        Screen.display()
 
     def get_choice(self):
         return self.choice
