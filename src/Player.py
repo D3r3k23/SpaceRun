@@ -1,5 +1,5 @@
 
-from Drawable import Drawable
+from GameObject import GameObject
 import Resources
 from Util import *
 
@@ -14,7 +14,7 @@ SPEED_FACTOR = 20
 
 MAX_SPEED = 25
 
-class Player(Drawable):
+class Player(GameObject):
     def __init__(self, screen):
         img = Resources.images['Spaceship']
 

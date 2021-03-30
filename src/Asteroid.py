@@ -1,5 +1,5 @@
 
-from Drawable import Drawable
+from GameObject import GameObject
 import Resources
 
 from collections import namedtuple
@@ -19,8 +19,8 @@ SPEED_FACTOR  = 20
 RAND_ROTATION = True
 
 # Random choice of 4 asteroids
-class Asteroid(Drawable):
-    def __init__(self, screen):
+class Asteroid(GameObject):
+    def __init__(self, screen, posY):
         spec = random.choice(asteroids)
         img = Resources.images[spec.img]
 
@@ -30,7 +30,6 @@ class Asteroid(Drawable):
             img = pygame.transform.rotate(img, angle)
 
         self.posX = screen.get_width() + (img.get_width() / 2)
-        posY = random.randrange(screen.get_height())
 
         super().__init__(screen, img, self.posX, posY)
 

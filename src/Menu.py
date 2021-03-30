@@ -21,7 +21,7 @@ class Menu:
 
         self.playButton = Button(self.screen, 'Play', 540, 420)
         self.exitButton = Button(self.screen, 'Exit', 740, 420)
-        self.title = Text(screen, 'Cave Run',
+        self.titleText  = Text(screen, 'Cave Run',
             'SpaceSquadron', 108, GREEN, 640, 250)
         
     # Runs the app menu
@@ -55,7 +55,7 @@ class Menu:
 
         self.playButton.draw()
         self.exitButton.draw()
-        self.title.draw()
+        self.titleText.draw()
 
         pygame.display.flip()
     
