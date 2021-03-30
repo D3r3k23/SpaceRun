@@ -1,4 +1,6 @@
 
+import Screen
+
 import pygame
 
 class Drawable:
@@ -11,4 +13,4 @@ class Drawable:
         self.rect = pygame.Rect(origin, (width, height))
     
     def draw(self, screen):
-        screen.blit(self.img, self.rect)
+        Screen.draw_to_screen(screen, self.img, self.rect)

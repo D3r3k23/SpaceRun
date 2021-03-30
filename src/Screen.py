@@ -1,5 +1,4 @@
 
-from Drawable import Drawable
 import Colors
 import Config
 
@@ -20,3 +19,6 @@ def display():
         item.draw(screen)
     items.clear()
     pygame.display.update()
+
+def draw_to_screen(screen, img, rect):
+    screen.blit(img, rect)
