@@ -20,7 +20,6 @@ class Menu:
         self.choice = Menu.Choice.NONE
 
         self.titleText = Text('Cave Run', 'SpaceSquadron', 108, Colors.GREEN, 640, 250)
-
         self.playButton = Button('Play', 540, 420)
         self.exitButton = Button('Exit', 740, 420)
         

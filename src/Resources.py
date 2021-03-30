@@ -13,8 +13,8 @@ music = Music()
 fonts = {}
 
 # Loads single image
-def load_image(fn):
-    fp = os.path.join(resource_dir, 'images', fn)
+def load_image(folder, fn):
+    fp = os.path.join(resource_dir, 'images', folder, fn)
     try:
         surf = pygame.image.load(fp)
     except (pygame.error, FileNotFoundError):
@@ -49,40 +49,42 @@ def load_font(name, size):
         
         return font
 
-# Loads all resources
 def load():
-    # Images
+    load_images()
+    load_sounds()
+    load_music()
+    load_fonts()
 
-    images['Spaceship'  ] = load_image(os.path.join('spaceship', 'spaceship.png'))
+def load_images():
+    images['Spaceship'  ] = load_image('spaceship', 'spaceship.png')
 
-    images['Play'       ] = load_image(os.path.join('buttons', 'play_button.png'))
-    images['Play_active'] = load_image(os.path.join('buttons', 'play_button_active.png'))
-    images['Exit'       ] = load_image(os.path.join('buttons', 'exit_button.png'))
-    images['Exit_active'] = load_image(os.path.join('buttons', 'exit_button_active.png'))
+    images['Play'       ] = load_image('buttons', 'play_button.png')
+    images['Play_active'] = load_image('buttons', 'play_button_active.png')
+    images['Exit'       ] = load_image('buttons', 'exit_button.png')
+    images['Exit_active'] = load_image('buttons', 'exit_button_active.png')
 
-    images['Asteroid1'] = load_image(os.path.join('asteroids', 'asteroid1.png'))
-    images['Asteroid2'] = load_image(os.path.join('asteroids', 'asteroid2.png'))
-    images['Asteroid3'] = load_image(os.path.join('asteroids', 'asteroid3.png'))
-    images['Asteroid4'] = load_image(os.path.join('asteroids', 'asteroid4.png'))
+    images['Asteroid1'] = load_image('asteroids', 'asteroid1.png')
+    images['Asteroid2'] = load_image('asteroids', 'asteroid2.png')
+    images['Asteroid3'] = load_image('asteroids', 'asteroid3.png')
+    images['Asteroid4'] = load_image('asteroids', 'asteroid4.png')
 
-    images['Explosion1' ] = load_image(os.path.join('explosion', 'explosion1.png'))
-    images['Explosion2' ] = load_image(os.path.join('explosion', 'explosion2.png'))
-    images['Explosion3' ] = load_image(os.path.join('explosion', 'explosion3.png'))
-    images['Explosion4' ] = load_image(os.path.join('explosion', 'explosion4.png'))
-    images['Explosion5' ] = load_image(os.path.join('explosion', 'explosion5.png'))
-    images['Explosion6' ] = load_image(os.path.join('explosion', 'explosion6.png'))
-    images['Explosion7' ] = load_image(os.path.join('explosion', 'explosion7.png'))
-    images['Explosion8' ] = load_image(os.path.join('explosion', 'explosion8.png'))
-    images['Explosion9' ] = load_image(os.path.join('explosion', 'explosion9.png'))
-    images['Explosion10'] = load_image(os.path.join('explosion', 'explosion10.png'))
-    images['Explosion11'] = load_image(os.path.join('explosion', 'explosion11.png'))
+    images['Explosion1' ] = load_image('explosion', 'explosion1.png')
+    images['Explosion2' ] = load_image('explosion', 'explosion2.png')
+    images['Explosion3' ] = load_image('explosion', 'explosion3.png')
+    images['Explosion4' ] = load_image('explosion', 'explosion4.png')
+    images['Explosion5' ] = load_image('explosion', 'explosion5.png')
+    images['Explosion6' ] = load_image('explosion', 'explosion6.png')
+    images['Explosion7' ] = load_image('explosion', 'explosion7.png')
+    images['Explosion8' ] = load_image('explosion', 'explosion8.png')
+    images['Explosion9' ] = load_image('explosion', 'explosion9.png')
+    images['Explosion10'] = load_image('explosion', 'explosion10.png')
+    images['Explosion11'] = load_image('explosion', 'explosion11.png')
 
-    # Sounds
-
+def load_sounds():
+    pass
     # sounds['PlayerDeath'] = load_sound('explosion1')
 
-    # Music
-
+def load_music():
     music.add_song(get_song_path('The Prototypes - Pale Blue Dot.ogg'))
     music.add_song(get_song_path('Teddy Killerz - Outer Space.ogg'))
     music.add_song(get_song_path('Phace & Misanthrop - Desert Orgy.ogg'))
@@ -93,9 +95,7 @@ def load():
     music.add_song(get_song_path('Ed Rush & Optical - Mystery Machine.ogg'))
     music.add_song(get_song_path('Ed Rush & Optical - Fixation.ogg'))
     music.add_song(get_song_path('Andy C - Quest (Bladerunner Remix).ogg'))
-
     music.shuffle()
 
-    # Fonts
-
+def load_fonts():
     fonts['SpaceSquadron'] = get_font_path('space_squadron.ttf')
