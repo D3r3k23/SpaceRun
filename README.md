@@ -1,4 +1,4 @@
-# Cave Run
+# SpaceRun
 
 Simple cave runner game written in Python using Pygame
 

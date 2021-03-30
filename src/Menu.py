@@ -9,6 +9,10 @@ import Colors
 from enum import Enum
 import pygame
 
+titleText = Text('Cave Run', 'SpaceSquadron', 108, Colors.GREEN, 640, 250)
+playButton = Button('Play', 540, 420)
+exitButton = Button('Exit', 740, 420)
+
 class Menu:
     class Choice(Enum):
         NONE = 0
@@ -18,10 +22,6 @@ class Menu:
     def __init__(self):
         self.running = False
         self.choice = Menu.Choice.NONE
-
-        self.titleText = Text('Cave Run', 'SpaceSquadron', 108, Colors.GREEN, 640, 250)
-        self.playButton = Button('Play', 540, 420)
-        self.exitButton = Button('Exit', 740, 420)
         
     # Runs the app menu
     def run(self):
@@ -40,10 +40,10 @@ class Menu:
                 elif event.type == pygame.MOUSEBUTTONUP:
                     pos = Util.get_mouse_pos()
 
-                    if self.playButton.contains(pos):
+                    if playButton.contains(pos):
                         self.choose_item(Menu.Choice.PLAY)
 
-                    elif self.exitButton.contains(pos):
+                    elif exitButton.contains(pos):
                         self.choose_item(Menu.Choice.EXIT)
 
     def choose_item(self, choice):
@@ -51,9 +51,9 @@ class Menu:
         self.running = False
 
     def render(self):
-        Screen.draw(self.titleText)
-        Screen.draw(self.playButton)
-        Screen.draw(self.exitButton)
+        titleText.draw()
+        playButton.draw()
+        exitButton.draw()
 
         Screen.display()
 

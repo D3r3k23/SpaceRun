@@ -1,5 +1,5 @@
 
-from Drawable import Drawable
+import Screen
 import Resources
 import Util
 
@@ -7,7 +7,7 @@ import pygame
 
 SIZE = 150
 
-class Button(Drawable):
+class Button(Screen.Drawable):
     # Center X and Y coordinates, pygame.Surface
     def __init__(self, name, x, y):
         img_normal = Resources.images[name]

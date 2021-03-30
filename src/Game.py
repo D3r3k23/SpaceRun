@@ -17,15 +17,16 @@ import pygame
 
 ASTEROID_SPAWN_INT = 2
 
+gameOverText = Text('GAME OVER!', 'SpaceSquadron', 64, Colors.RED, 640, 360)
+
 class Game:
     def __init__(self):
         self.running = False
         self.paused  = False
 
         self.scoreText    = Score()
-        self.gameOverText = Text('GAME OVER!', 'SpaceSquadron', 64, Colors.RED, 640, 360)
-
         self.player = Player()
+
         self.asteroids = []
         self.sinceLastSpawn = 0.0
         self.prevFrameTime = 0
@@ -59,12 +60,12 @@ class Game:
 
     def render(self):
         for asteroid in self.asteroids:
-            Screen.draw(asteroid)
+            asteroid.draw()
         
-        Screen.draw(self.player)
-        Screen.draw(self.scoreText)
+        self.player.draw()
+        self.scoreText.draw()
         if not self.player.is_alive():
-            Screen.draw(self.gameOverText)
+            gameOverText.draw()
         
         Screen.display()
     

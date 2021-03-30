@@ -1,10 +1,10 @@
 
-from Drawable import Drawable
+import Screen
 import Resources
 
 import pygame
 
-class Text(Drawable):
+class Text(Screen.Drawable):
     def __init__(self, text, font, size, color, x, y):
         self.font  = Resources.load_font(font, size)
         self.color = color

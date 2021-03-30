@@ -7,11 +7,12 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = 'True'
 
 import pygame
 pygame.init()
-pygame.display.set_caption('CaveRun')
+pygame.display.set_caption('SpaceRun')
 
+import Screen
 import Resources
-import App
-
 Resources.load()
+
+import App
 App.run()
 App.exit()

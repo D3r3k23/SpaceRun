@@ -1,11 +1,10 @@
 
-from Drawable import Drawable
 import Screen
 import Colors
 
 import pygame
 
-class GameObject(Drawable):
+class GameObject(Screen.Drawable):
     SHOW_HITBOXES = False
 
     def __init__(self, img, x, y):
@@ -21,7 +20,7 @@ class GameObject(Drawable):
     def draw(self):
         super().draw()
         if GameObject.SHOW_HITBOXES:
-            Screen.draw_to_screen(self.hitboxImg, self.rect)
+            Screen.Drawable(self.hitboxImg, self.rect.centerx, self.rect.centery).draw()
     
     @staticmethod
     def collision(obj1, obj2):
