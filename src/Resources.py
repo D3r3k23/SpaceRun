@@ -53,7 +53,7 @@ def load_font(name, size):
 def load():
     # Images
 
-    images['Spaceship'  ] = load_image('spaceship.png')
+    images['Spaceship'  ] = load_image(os.path.join('spaceship', 'spaceship.png'))
 
     images['Play'       ] = load_image(os.path.join('buttons', 'play_button.png'))
     images['Play_active'] = load_image(os.path.join('buttons', 'play_button_active.png'))
