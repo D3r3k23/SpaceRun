@@ -2,6 +2,8 @@
 
 Simple cave runner game written in Python using Pygame
 
+![Game](media/game.png?raw=true)
+
 
 ## Controls
 
