@@ -42,14 +42,14 @@ class Player(GameObject):
 
         self.rect.centery = self.posY
     
-    def kill(self):
+    def kill(self, explode=False):
         self.alive = False
         self.acelY = 0.0
         self.velY  = 0.0
 
-        self.img = Resources.images['Explosion5']
-
-        # Play explosion sound
+        if explode:
+            self.img = Resources.images['Explosion5']
+            # Play explosion sound
     
     def is_alive(self):
         return self.alive

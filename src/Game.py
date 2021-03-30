@@ -76,11 +76,11 @@ class Game:
     
     def handle_collisions(self):
         if not self.player.in_bounds():
-            self.game_over()
+            self.player.kill()
         
         for asteroid in self.asteroids:
             if GameObject.collision(asteroid, self.player):
-                self.game_over()
+                self.player.kill(explode=True)
     
     def get_timestep(self):
         newFrameTime = time()
@@ -110,9 +110,6 @@ class Game:
     def despawn_asteroids(self):
         self.asteroids[:] = [ a for a in self.asteroids if not a.toDelete ]
 
-    def game_over(self):
-        self.player.kill()
-    
     def pause(self):
         self.paused = True
     
