@@ -20,9 +20,8 @@ SPEED_FACTOR = 20
 
 # Random choice of 4 asteroids
 class Asteroid(GameObject):
-    RAND_ROTATION = False
+    RAND_ROTATION = True
     # ^ True messes up hitboxes
-    #   - Maybe have img rotate by rand(0, 3) * 90?
 
     def __init__(self, posY):
         spec = random.choice(asteroids)
@@ -30,7 +29,7 @@ class Asteroid(GameObject):
 
         img = pygame.transform.scale(img, spec.size)
         if Asteroid.RAND_ROTATION:
-            angle = random.randint(0, 35) * 10
+            angle = random.randint(0, 3) * 90
             img = pygame.transform.rotate(img, angle)
 
         self.posX = Config.SCREEN_WIDTH + (img.get_width() / 2)

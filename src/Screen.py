@@ -12,8 +12,7 @@ def clear():
     screen.fill(Colors.BLACK)
 
 def draw(drawable):
-    if isinstance(drawable, Drawable):
-        items.append(drawable)
+    items.append(drawable)
 
 def display():
     clear()    

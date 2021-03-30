@@ -95,9 +95,13 @@ class Game:
             self.game_over()
         
         for asteroid in self.asteroids:
-            if asteroid.rect.colliderect(self.player.rect):
+            if Game.hitbox_collision(asteroid, self.player):
                 self.game_over()
-        
+    
+    @staticmethod
+    def hitbox_collision(obj1, obj2):
+        return obj1.get_hitbox().colliderect(obj2.get_hitbox())
+
     def handle_events(self):
         for event in pygame.event.get():
             if not handle_app_event(event):

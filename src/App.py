@@ -42,6 +42,7 @@ from Game import Game
 from Menu import Menu
 
 def run():
+    Resources.music.start()
     running = True
     menu = Menu()
 

@@ -17,7 +17,7 @@ Simple cave runner game written in Python using Pygame
 
 ## TODO
 
-* Fix player & asteroid hitboxes
+* Make hitboxes better
 * In menu, space background moves down
 * Space background moves at slower constant speed
 * Planet surface in game, speed based on player speed
