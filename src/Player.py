@@ -1,7 +1,8 @@
 
 from GameObject import GameObject
 import Resources
-from Util import *
+import Util
+import Config
 
 from math import sqrt
 from time import time
@@ -15,10 +16,10 @@ SPEED_FACTOR = 20
 MAX_SPEED = 25
 
 class Player(GameObject):
-    def __init__(self, screen):
+    def __init__(self):
         img = Resources.images['Spaceship']
 
-        super().__init__(screen, img, START_X, START_Y)
+        super().__init__(img, START_X, START_Y)
 
         self.posY  = START_Y
         self.velY  = 0.0
@@ -29,13 +30,13 @@ class Player(GameObject):
     
     def move(self, ts):
         if self.alive:
-            if is_key_pressed(pygame.K_SPACE):
+            if Util.is_key_pressed(pygame.K_SPACE):
                 self.acelY = -1.0
             else:
                 self.acelY = 1.0
 
         self.velY += ACCEL_FACTOR * self.acelY * ts
-        self.velY = clamp(self.velY, -MAX_SPEED, MAX_SPEED)
+        self.velY = Util.clamp(self.velY, -MAX_SPEED, MAX_SPEED)
 
         self.posY += SPEED_FACTOR * self.velY * ts
 
@@ -54,7 +55,7 @@ class Player(GameObject):
         return self.alive
     
     def in_bounds(self):
-        return (-20 < self.rect.bottom) and (self.rect.top < self.screen.get_height())
+        return (-20 < self.rect.bottom) and (self.rect.top < Config.SCREEN_HEIGHT)
 
     def get_score(self):
         return self.score

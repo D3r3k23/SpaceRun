@@ -1,6 +1,7 @@
 
 from GameObject import GameObject
 import Resources
+import Config
 
 from collections import namedtuple
 import random
@@ -15,23 +16,26 @@ asteroids = [
     AsteroidSpec(img = 'Asteroid4', speed = 10, size = (160, 160))
 ]
 
-SPEED_FACTOR  = 20
-RAND_ROTATION = True
+SPEED_FACTOR = 20
 
 # Random choice of 4 asteroids
 class Asteroid(GameObject):
-    def __init__(self, screen, posY):
+    RAND_ROTATION = False
+    # ^ True messes up hitboxes
+    #   - Maybe have img rotate by rand(0, 3) * 90?
+
+    def __init__(self, posY):
         spec = random.choice(asteroids)
         img = Resources.images[spec.img]
 
         img = pygame.transform.scale(img, spec.size)
-        if RAND_ROTATION:
+        if Asteroid.RAND_ROTATION:
             angle = random.randint(0, 35) * 10
             img = pygame.transform.rotate(img, angle)
 
-        self.posX = screen.get_width() + (img.get_width() / 2)
+        self.posX = Config.SCREEN_WIDTH + (img.get_width() / 2)
 
-        super().__init__(screen, img, self.posX, posY)
+        super().__init__(img, self.posX, posY)
 
         self.velX = spec.speed
         self.pastPlayer = False

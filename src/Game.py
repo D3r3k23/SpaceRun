@@ -1,13 +1,15 @@
 
-import Resources
-from Colors     import *
-from Util       import *
+from App        import handle_app_event
 from Text       import Text
 from Score      import Score
 from GameObject import GameObject
 from Player     import Player
 from Asteroid   import Asteroid
-from App        import handle_app_event
+import Screen
+import Resources
+import Colors
+import Util
+import Config
 
 from time import time
 import random
@@ -16,16 +18,14 @@ import pygame
 ASTEROID_SPAWN_INT = 2
 
 class Game:
-    def __init__(self, screen):
-        self.screen   = screen
-        self.running  = False
-        self.paused   = False
+    def __init__(self):
+        self.running = False
+        self.paused  = False
 
-        self.scoreText    = Score(screen)
-        self.gameOverText = Text(screen, 'GAME OVER!',
-            'SpaceSquadron', 64, RED, 640, 360)
+        self.scoreText    = Score()
+        self.gameOverText = Text('GAME OVER!', 'SpaceSquadron', 64, Colors.RED, 640, 360)
 
-        self.player = Player(screen)
+        self.player = Player()
         self.asteroids = []
         self.sinceLastSpawn = 0.0
         self.prevFrameTime = 0
@@ -58,17 +58,15 @@ class Game:
         return ts
 
     def render(self):
-        self.screen.fill(BLACK) # Or space background
-
         for asteroid in self.asteroids:
-            asteroid.draw()
+            Screen.draw(asteroid)
         
-        self.player.draw()
-        self.scoreText.draw()
+        Screen.draw(self.player)
+        Screen.draw(self.scoreText)
         if not self.player.is_alive():
-            self.gameOverText.draw()
+            Screen.draw(self.gameOverText)
         
-        pygame.display.flip()
+        Screen.display()
     
     def move_asteroids(self, ts):
         for asteroid in self.asteroids:
@@ -77,15 +75,15 @@ class Game:
                 if asteroid.rect.right < self.player.rect.left:
                     asteroid.pass_player()
                     self.player.inc_score()
-                    self.scoreText.update(self.player.get_score())
+                    self.scoreText.set_score(self.player.get_score())
     
     def check_asteroid_spawn(self, ts):
         self.sinceLastSpawn += ts
         return self.sinceLastSpawn >= ASTEROID_SPAWN_INT
     
     def spawn_asteroid(self):
-        posY = random.randrange(self.screen.get_height() - 50)
-        asteroid = Asteroid(self.screen, posY)
+        posY = random.randrange(Config.SCREEN_HEIGHT - 50)
+        asteroid = Asteroid(posY)
         self.asteroids.append(asteroid)
         self.sinceLastSpawn = 0.0
 

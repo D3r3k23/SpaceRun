@@ -1,25 +1,21 @@
 
-from Text   import Text
-from Colors import *
+from Text import Text
+import Colors
 import Resources
 
 import pygame
 
 POS_X, POS_Y = 80, 700
 
-class Score:
-    def __init__(self, screen):
-        self.screen = screen
+class Score(Text):
+    def __init__(self):
         self.score = 0
-        self.text = Text(self.screen, self.get_string(),
-            'SpaceSquadron', 32, WHITE, POS_X, POS_Y)
+        super().__init__(self.get_string(), 'SpaceSquadron', 32, Colors.WHITE, POS_X, POS_Y)
     
     def get_string(self):
         return 'SCORE: ' + str(self.score)
     
-    def update(self, score):
+    def set_score(self, score):
         self.score = score
-        self.text.change(self.get_string())
-    
-    def draw(self):
-        self.text.draw()
+        self.set_text(self.get_string())
+        super().update()

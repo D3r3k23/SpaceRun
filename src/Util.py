@@ -14,8 +14,5 @@ def clamp(x, min_x, max_x):
 def is_key_pressed(key):
     return pygame.key.get_pressed()[key]
 
-def window_focused():
-    return pygame.key.get_focused() # and pygame.mouse.get_focused()
-
 def get_mouse_pos():
     return pygame.mouse.get_pos()

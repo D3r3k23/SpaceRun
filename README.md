@@ -29,3 +29,4 @@ Simple cave runner game written in Python using Pygame
 * Smoke from player during acceleration
 * Add window icon
 * PyInstaller
+* Adde patterns for asteroids?

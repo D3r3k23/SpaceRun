@@ -41,16 +41,16 @@ def handle_app_event(event):
 from Game import Game
 from Menu import Menu
 
-def run(screen):
+def run():
     running = True
-    menu = Menu(screen)
+    menu = Menu()
 
     while running:
         menu.run()
         choice = menu.get_choice()
 
         if choice == Menu.Choice.PLAY:
-            game = Game(screen)
+            game = Game()
             game.play()
         
         elif choice == Menu.Choice.EXIT:

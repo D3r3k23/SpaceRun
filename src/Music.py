@@ -1,5 +1,5 @@
 
-from Util import *
+import Util
 
 import random
 import pygame
@@ -62,10 +62,10 @@ class Music:
         
     def volume_up(self):
         vol = pygame.mixer.music.get_volume()
-        newVol = clamp(vol + VOLUME_STEP, 0, VOLUME_MAX)
+        newVol = Util.clamp(vol + VOLUME_STEP, 0, VOLUME_MAX)
         pygame.mixer.music.set_volume(newVol)
         
     def volume_down(self):
         vol = pygame.mixer.music.get_volume()
-        newVol = clamp(vol - VOLUME_STEP, 0, VOLUME_MAX)
+        newVol = Util.clamp(vol - VOLUME_STEP, 0, VOLUME_MAX)
         pygame.mixer.music.set_volume(newVol)
