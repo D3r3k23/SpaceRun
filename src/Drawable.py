@@ -12,5 +12,5 @@ class Drawable:
         self.img  = img
         self.rect = pygame.Rect(origin, (width, height))
     
-    def draw(self, screen):
-        Screen.draw_to_screen(screen, self.img, self.rect)
+    def draw(self):
+        Screen.draw_to_screen(self.img, self.rect)

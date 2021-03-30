@@ -17,16 +17,16 @@ Simple cave runner game written in Python using Pygame
 
 ## TODO
 
-* Make hitboxes better
+* No explosion for upper out of bounds
 * In menu, space background moves down
-* Space background moves at slower constant speed
 * Planet surface in game, speed based on player speed
-* Asteroid spawn rate based on player speed
+* Space background moves at slower speed
+* Asteroid spawn rate & speed based on player speed
 * Animate explosion
 * Explosion sound
 * Thrust sound
-* Player tilt based on acceleration
-* Smoke from player during acceleration
+* Player tilt based on thrust
+* Smoke from player during thrust
 * Add window icon
 * PyInstaller
-* Adde patterns for asteroids?
+* Add patterns for asteroids?

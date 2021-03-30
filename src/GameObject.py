@@ -6,7 +6,7 @@ import Colors
 import pygame
 
 class GameObject(Drawable):
-    SHOW_HITBOXES = True
+    SHOW_HITBOXES = False
 
     def __init__(self, img, x, y):
         super().__init__(img, x, y)
@@ -18,16 +18,16 @@ class GameObject(Drawable):
             for point in maskOutline:
                 pygame.draw.circle(self.hitboxImg, Colors.WHITE, point, 1)
     
-    def draw(self, screen):
-        super().draw(screen)
+    def draw(self):
+        super().draw()
         if GameObject.SHOW_HITBOXES:
-            Screen.draw_to_screen(screen, self.hitboxImg, self.rect)
+            Screen.draw_to_screen(self.hitboxImg, self.rect)
     
     @staticmethod
     def collision(obj1, obj2):
         if obj1.rect.colliderect(obj2.rect):
             offset = GameObject.get_mask_offset(obj1, obj2)
-            return obj1.mask.overlap(obj2.mask, offset) is not False
+            return obj1.mask.overlap(obj2.mask, offset) is not None
         else:
             return False
 

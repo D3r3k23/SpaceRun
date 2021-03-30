@@ -16,9 +16,9 @@ def draw(drawable):
 def display():
     clear()    
     for item in items:
-        item.draw(screen)
+        item.draw()
     items.clear()
     pygame.display.update()
 
-def draw_to_screen(screen, img, rect):
+def draw_to_screen(img, rect):
     screen.blit(img, rect)

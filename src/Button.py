@@ -20,7 +20,7 @@ class Button(Drawable):
         
         self.hovered = False
     
-    def draw(self, screen):
+    def draw(self):
         if self.contains(Util.get_mouse_pos()):
             if not self.hovered:
                 self.hovered = True
@@ -30,7 +30,7 @@ class Button(Drawable):
                 self.hovered = False
                 self.img = self.img_normal
 
-        super().draw(screen)
+        super().draw()
     
     def contains(self, pos):
         return self.rect.collidepoint(pos)
