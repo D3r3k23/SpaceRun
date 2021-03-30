@@ -95,7 +95,6 @@ def load_music():
     music.add_song(get_song_path('Ed Rush & Optical - Mystery Machine.ogg'))
     music.add_song(get_song_path('Ed Rush & Optical - Fixation.ogg'))
     music.add_song(get_song_path('Andy C - Quest (Bladerunner Remix).ogg'))
-    music.shuffle()
 
 def load_fonts():
     fonts['SpaceSquadron'] = get_font_path('space_squadron.ttf')

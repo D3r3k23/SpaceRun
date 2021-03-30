@@ -9,6 +9,7 @@ VOLUME_STEP = 0.025
 VOLUME_MAX  = 0.8
 
 class Music:
+    EN_SHUFFLE = True
     SONG_END = pygame.USEREVENT + 1 # pygame.mixer.music song end event
 
     def __init__(self):
@@ -31,6 +32,9 @@ class Music:
     
     def start(self):
         pygame.mixer.music.set_volume(VOLUME_INIT)
+
+        if Music.EN_SHUFFLE:
+            self.shuffle()
 
         if len(self.songs) > 0: # If any songs were loaded
             self.enabled = True
