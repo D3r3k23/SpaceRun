@@ -4,5 +4,6 @@
 /venv/
 /pyinstaller/
 
+/resources/music/
+
 **/__pycache__/
-*.ogg

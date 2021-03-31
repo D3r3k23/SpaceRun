@@ -23,13 +23,14 @@ def load_image(folder, fn):
     return surf.convert_alpha() if surf.get_alpha() else surf.convert()
 
 # Loads single sound
-def load_sound(fn):
+def load_sound(fn, vol):
     fp = os.path.join(resource_dir, 'sounds', fn)
     try:
         sound = pygame.mixer.Sound(fp)
     except (pygame.error, FileNotFoundError):
         raise SystemExit('Could not load sound: ' + fp)
     
+    sound.set_volume(vol)
     return sound
 
 def get_song_path(fn):
@@ -85,8 +86,8 @@ def load_images():
     images['Explosion11'] = load_image('explosion', 'explosion11.png')
 
 def load_sounds():
-    pass
-    # sounds['PlayerDeath'] = load_sound('explosion1')
+    sounds['Explosion'] = load_sound('crash_explosion.wav', 0.1)
+    sounds['Thrust'   ] = load_sound('spaceship_thrust.wav', 0.05)
 
 def load_music():
     music.add_song(get_song_path('The Prototypes - Pale Blue Dot.ogg'))

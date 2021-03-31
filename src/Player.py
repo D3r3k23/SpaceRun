@@ -15,10 +15,11 @@ SPEED_FACTOR = 20
 
 MAX_SPEED = 25
 
+crashSound = Resources.sounds['Explosion']
+
 class Player(GameObject):
     def __init__(self):
         img = Resources.images['Spaceship']
-
         super().__init__(img, START_X, START_Y)
 
         self.posY  = START_Y
@@ -49,7 +50,7 @@ class Player(GameObject):
 
         if explode:
             self.img = Resources.images['Explosion5']
-            # Play explosion sound
+            crashSound.play()
     
     def is_alive(self):
         return self.alive
