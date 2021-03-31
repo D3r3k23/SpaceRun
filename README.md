@@ -19,7 +19,6 @@ Simple cave runner game written in Python using Pygame
 
 ## TODO
 
-* No explosion for upper out of bounds
 * In menu, space background moves down
 * Planet surface in game, speed based on player speed
 * Space background moves at slower speed
