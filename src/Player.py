@@ -11,7 +11,7 @@ import pygame
 
 START_X, START_Y = 200, 120
 
-ACCEL_FACTOR = 36
+ACCEL_FACTOR = 40
 SPEED_FACTOR = 20
 MAX_SPEED    = 25
 
@@ -41,7 +41,7 @@ class Player(GameObject):
             if Util.is_key_pressed(pygame.K_SPACE):
                 self.acelY = -1.0
             else:
-                self.acelY = 1.0
+                self.acelY = 0.8
 
             self.velY += ACCEL_FACTOR * self.acelY * ts
             self.velY = Util.clamp(self.velY, -MAX_SPEED, MAX_SPEED)
@@ -64,7 +64,7 @@ class Player(GameObject):
         return self.alive
     
     def in_bounds(self):
-        return (-20 < self.rect.bottom) and (self.rect.top < Screen.HEIGHT)
+        return (-10 < self.rect.bottom) and (self.rect.top < Screen.HEIGHT)
 
     def get_score(self):
         return self.score
@@ -73,4 +73,4 @@ class Player(GameObject):
         self.score += 1
     
     def get_speed(self):
-        return sqrt(self.score / 5) / 2 + 2
+        return sqrt((self.score // 5) / 2) / 10 + 1

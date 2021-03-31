@@ -19,11 +19,10 @@ Simple cave runner game written in Python using Pygame
 
 ## TODO
 
-* Asteroid spawn rate based on player speed (faster asteroids mean more spawns)
+* Asteroids rotate while moving?
 * In menu, space background moves down
 * Space background moves at slower speed
 * Planet surface in game, speed based on player speed
-* Player tilt based on thrust?
 * Smoke from player during thrust
 * Add window icon
 * PyInstaller

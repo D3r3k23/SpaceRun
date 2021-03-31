@@ -16,7 +16,7 @@ asteroids = [
     AsteroidSpec(img = 'Asteroid4', speed = 10, size = (160, 160))
 ]
 
-SPEED_FACTOR = 10
+SPEED_FACTOR = 20
 
 # Random choice of 4 asteroids
 class Asteroid(GameObject):
@@ -28,7 +28,7 @@ class Asteroid(GameObject):
 
         img = pygame.transform.scale(img, spec.size)
         if Asteroid.RAND_ROTATION:
-            angle = random.randint(0, 3) * 90
+            angle = random.randint(0, 35) * 10
             img = pygame.transform.rotate(img, angle)
 
         self.posX = Screen.WIDTH + (img.get_width() / 2)

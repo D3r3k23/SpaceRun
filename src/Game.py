@@ -14,7 +14,6 @@ from time import time
 import random
 import pygame
 
-ASTEROID_SPAWN_INT = 1
 MAX_TS = 0.2
 
 gameOverText = Text('GAME OVER!', 'SpaceSquadron', 64, Colors.RED, 640, 360)
@@ -115,7 +114,9 @@ class Game:
     
     def check_asteroid_spawn(self, ts):
         self.sinceLastSpawn += ts
-        return self.sinceLastSpawn >= ASTEROID_SPAWN_INT
+        spawnInterval = 1.5 - ((self.asteroids[-1].velX - 8) / 10) - ((self.player.get_speed() - 1) * 1.2)
+        spawnInterval = max(spawnInterval, 0.1)
+        return self.sinceLastSpawn >= spawnInterval
     
     def spawn_asteroid(self):
         posY = random.randrange(Screen.HEIGHT - 50)
