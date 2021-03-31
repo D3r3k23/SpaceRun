@@ -24,11 +24,12 @@ class Explosion(Screen.Drawable):
         if self.active:
             self.sinceLastFrame += ts
             if self.sinceLastFrame >= ANIMATION_INT:
-                self.sinceLastFrame = 0
                 self.next_frame()
 
     def next_frame(self):
+        self.sinceLastFrame = 0
         self.frameNum += 1
+
         if self.frameNum < len(imgs):
             self.img = imgs[self.frameNum]
         else:

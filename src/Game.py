@@ -125,8 +125,6 @@ class Game:
                     score = self.player.inc_score()
                     self.scoreText.set_score(score)
                     background.set_speed(self.player.get_speed() * BACK_SPEED_FACTOR + (BACK_SPEED_START - BACK_SPEED_FACTOR))
-        print('Player speed: ' + str(self.player.get_speed()))
-        print('Scroll speed: ' + str(1 / background.scrollInt))
     
     def check_asteroid_spawn(self, ts):
         self.sinceLastSpawn += ts
