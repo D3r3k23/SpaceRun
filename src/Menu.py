@@ -35,6 +35,7 @@ class Menu:
             self.handle_events()
             background.scroll()
             self.render()
+        return self.choice
 
     def render(self):
         background.draw()
@@ -66,6 +67,3 @@ class Menu:
     def choose_item(self, choice):
         self.choice  = choice
         self.running = False
-
-    def get_choice(self):
-        return self.choice
