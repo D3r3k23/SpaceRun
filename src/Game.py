@@ -4,7 +4,6 @@ import Screen
 import Resources
 import Colors
 import Util
-import Config
 from Text       import Text
 from Score      import Score
 from Player     import Player
@@ -15,7 +14,7 @@ from time import time
 import random
 import pygame
 
-ASTEROID_SPAWN_INT = 2
+ASTEROID_SPAWN_INT = 1
 
 gameOverText = Text('GAME OVER!', 'SpaceSquadron', 64, Colors.RED, 640, 360)
 
@@ -90,7 +89,7 @@ class Game:
     
     def move_asteroids(self, ts):
         for asteroid in self.asteroids:
-            asteroid.move(ts)
+            asteroid.move(ts, self.player.get_speed())
             if not asteroid.pastPlayer and self.player.is_alive():
                 if asteroid.rect.right < self.player.rect.left:
                     asteroid.pass_player()
@@ -102,7 +101,7 @@ class Game:
         return self.sinceLastSpawn >= ASTEROID_SPAWN_INT
     
     def spawn_asteroid(self):
-        posY = random.randrange(Config.SCREEN_HEIGHT - 50)
+        posY = random.randrange(Screen.HEIGHT - 50)
         asteroid = Asteroid(posY)
         self.asteroids.append(asteroid)
         self.sinceLastSpawn = 0.0

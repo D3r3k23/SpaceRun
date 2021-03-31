@@ -1,10 +1,11 @@
 
 import Colors
-import Config
 
 import pygame
 
-screen = pygame.display.set_mode((Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT))
+WIDTH, HEIGHT = 1280, 720
+
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 def clear():
     screen.fill(Colors.BLACK)

@@ -9,7 +9,7 @@ from Text   import Text
 from enum import Enum
 import pygame
 
-titleText = Text('Cave Run', 'SpaceSquadron', 108, Colors.GREEN, 640, 250)
+titleText = Text('Space Run', 'SpaceSquadron', 108, Colors.GREEN, 640, 250)
 playButton = Button('Play', 540, 420)
 exitButton = Button('Exit', 740, 420)
 

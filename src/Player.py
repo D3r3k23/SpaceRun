@@ -1,8 +1,8 @@
 
 from GameObject import GameObject
+import Screen
 import Resources
 import Util
-import Config
 
 from math import sqrt
 from time import time
@@ -12,8 +12,7 @@ START_X, START_Y = 200, 120
 
 ACCEL_FACTOR = 36
 SPEED_FACTOR = 20
-
-MAX_SPEED = 25
+MAX_SPEED    = 25
 
 crashSound = Resources.sounds['Explosion']
 
@@ -56,7 +55,7 @@ class Player(GameObject):
         return self.alive
     
     def in_bounds(self):
-        return (-20 < self.rect.bottom) and (self.rect.top < Config.SCREEN_HEIGHT)
+        return (-20 < self.rect.bottom) and (self.rect.top < Screen.HEIGHT)
 
     def get_score(self):
         return self.score
@@ -65,4 +64,4 @@ class Player(GameObject):
         self.score += 1
     
     def get_speed(self):
-        return sqrt(self.score)
+        return sqrt(self.score / 5) / 2 + 2
