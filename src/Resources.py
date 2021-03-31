@@ -56,7 +56,11 @@ def load():
     load_fonts()
 
 def load_images():
-    images['Spaceship'  ] = load_image('spaceship', 'spaceship.png')
+    images['Spaceship'] = load_image('spaceship', 'spaceship.png')
+    images['Exhaust1' ] = load_image('spaceship', 'exhaust1.png')
+    images['Exhaust2' ] = load_image('spaceship', 'exhaust2.png')
+    images['Exhaust3' ] = load_image('spaceship', 'exhaust3.png')
+    images['Exhaust4' ] = load_image('spaceship', 'exhaust4.png')
 
     images['Play'       ] = load_image('buttons', 'play_button.png')
     images['Play_active'] = load_image('buttons', 'play_button_active.png')
