@@ -17,6 +17,7 @@ asteroids = [
 ]
 
 SPEED_FACTOR = 20
+ROTATE_SPEED = 3
 
 # Random choice of 4 asteroids
 class Asteroid(GameObject):
