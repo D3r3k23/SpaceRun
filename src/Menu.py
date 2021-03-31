@@ -1,5 +1,6 @@
 
 import App
+import Resources
 import Screen
 import Util
 import Colors
@@ -31,6 +32,8 @@ class Menu:
             self.render()
 
     def render(self):
+        Screen.draw_background(Resources.images['Background'])
+
         titleText.draw()
         playButton.draw()
         exitButton.draw()

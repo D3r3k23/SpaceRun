@@ -3,12 +3,18 @@ import Colors
 
 import pygame
 
-WIDTH, HEIGHT = 1280, 720
+RES = WIDTH, HEIGHT = 1280, 720
 
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+screen = pygame.display.set_mode(RES)
 
 def clear():
     screen.fill(Colors.BLACK)
+
+def draw_background(img):
+    draw_to_screen(img)
+
+def draw_to_screen(img, rect=(0, 0)):
+    screen.blit(img, rect)
 
 def display():
     pygame.display.update()
@@ -24,4 +30,4 @@ class Drawable:
         self.rect = pygame.Rect(origin, (width, height))
     
     def draw(self):
-        screen.blit(self.img, self.rect)
+        draw_to_screen(self.img, self.rect)

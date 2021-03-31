@@ -1,5 +1,6 @@
 
 from Music import Music
+import Screen
 
 import os.path
 import pygame
@@ -57,6 +58,8 @@ def load():
     load_fonts()
 
 def load_images():
+    images['Background'] = pygame.transform.scale(load_image('background', 'starfield.png'), Screen.RES)
+    
     images['Spaceship'] = load_image('spaceship', 'spaceship.png')
     images['Exhaust1' ] = load_image('spaceship', 'exhaust1.png')
     images['Exhaust2' ] = load_image('spaceship', 'exhaust2.png')

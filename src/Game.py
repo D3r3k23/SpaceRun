@@ -33,6 +33,8 @@ class Game:
         self.sinceLastSpawn = 0.0
         self.prevFrameTime = 0
 
+        # self.background = 
+
     def play(self):
         self.running = True
         self.prevFrameTime = time()
