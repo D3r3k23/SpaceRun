@@ -4,11 +4,12 @@ import Screen
 import Resources
 import Colors
 import Util
-from Text       import Text
-from Score      import Score
-from Player     import Player
-from Asteroid   import Asteroid
+from Text import Text
+from Score import Score
+from Player import Player
+from Asteroid import Asteroid
 from GameObject import GameObject
+from Background import Background
 
 from time import time
 import random
@@ -16,7 +17,11 @@ import pygame
 
 MAX_TS = 0.2
 
+BACK_SPEED_START  = 150
+BACK_SPEED_FACTOR = 100
+background = Background(Background.Dir.LEFT, BACK_SPEED_START)
 gameOverText = Text('GAME OVER!', 'SpaceSquadron', 64, Colors.RED, 640, 360)
+
 thrustSound = Resources.sounds['Thrust']
 thrustSoundChannel = pygame.mixer.Channel(0)
 pygame.mixer.set_reserved(1)
@@ -25,15 +30,14 @@ class Game:
     def __init__(self):
         self.running = False
         self.paused  = False
+        self.godMode = False
 
         self.scoreText = Score()
-        self.player = Player()
+        self.player    = Player()
 
         self.asteroids = []
         self.sinceLastSpawn = 0.0
         self.prevFrameTime = 0
-
-        # self.background = 
 
     def play(self):
         self.running = True
@@ -53,12 +57,16 @@ class Game:
                     if self.check_asteroid_spawn(ts):
                         self.spawn_asteroid()
                 
-                self.handle_collisions()
+                background.scroll()
+                if not self.godMode:
+                    self.handle_collisions()
                 self.render()
         
         pygame.mixer.stop()
 
     def render(self):
+        background.draw()
+
         for asteroid in self.asteroids:
             asteroid.draw()
         
@@ -81,7 +89,10 @@ class Game:
                         self.toggle_paused()
                     else:
                         self.running = False
-                    
+                
+                elif event.key == pygame.K_c:
+                    self.godMode = not self.godMode
+
                 elif event.key == pygame.K_SPACE:
                     if not self.paused and self.player.is_alive():
                         thrustSoundChannel.play(thrustSound)
@@ -111,8 +122,11 @@ class Game:
             if not asteroid.pastPlayer and self.player.is_alive():
                 if asteroid.rect.right < self.player.rect.left:
                     asteroid.pass_player()
-                    self.player.inc_score()
-                    self.scoreText.set_score(self.player.get_score())
+                    score = self.player.inc_score()
+                    self.scoreText.set_score(score)
+                    background.set_speed(self.player.get_speed() * BACK_SPEED_FACTOR + (BACK_SPEED_START - BACK_SPEED_FACTOR))
+        print('Player speed: ' + str(self.player.get_speed()))
+        print('Scroll speed: ' + str(1 / background.scrollInt))
     
     def check_asteroid_spawn(self, ts):
         self.sinceLastSpawn += ts

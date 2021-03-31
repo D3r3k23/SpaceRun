@@ -19,11 +19,7 @@ Simple cave runner game written in Python using Pygame
 
 ## TODO
 
-* In menu, space background moves down
-* Space background moves at slower speed
 * Planet surface in game, speed based on player speed
-* Smoke from player during thrust
+* Exhaust/flash from player during thrust
 * Add window icon
 * PyInstaller
-* Asteroids rotate while moving?
-* Add patterns for asteroids?

@@ -1,7 +1,7 @@
 
-from GameObject import GameObject
 import Screen
 import Resources
+from GameObject import GameObject
 
 from collections import namedtuple
 import random

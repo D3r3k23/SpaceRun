@@ -10,9 +10,6 @@ screen = pygame.display.set_mode(RES)
 def clear():
     screen.fill(Colors.BLACK)
 
-def draw_background(img):
-    draw_to_screen(img)
-
 def draw_to_screen(img, rect=(0, 0)):
     screen.blit(img, rect)
 

@@ -1,12 +1,12 @@
 
-from GameObject import GameObject
-from Explosion  import Explosion
 import Screen
 import Resources
 import Util
+from GameObject import GameObject
+from Explosion  import Explosion
 
-from math import sqrt
 from time import time
+from math import sqrt
 import pygame
 
 START_X, START_Y = 200, 120
@@ -47,7 +47,6 @@ class Player(GameObject):
             self.velY = Util.clamp(self.velY, -MAX_SPEED, MAX_SPEED)
 
             self.posY += SPEED_FACTOR * self.velY * ts
-
             self.rect.centery = self.posY
         
         elif self.explosion is not None:
@@ -71,6 +70,7 @@ class Player(GameObject):
     
     def inc_score(self):
         self.score += 1
+        return self.score
     
     def get_speed(self):
         return sqrt((self.score // 5) / 2) / 10 + 1

@@ -1,14 +1,18 @@
 
 import App
-import Resources
 import Screen
+import Resources
 import Util
 import Colors
+from Background import Background
 from Button import Button
-from Text   import Text
+from Text import Text
 
+from time import time
 from enum import Enum
 import pygame
+
+background = Background(Background.Dir.DOWN, 15)
 
 titleText = Text('Space Run', 'SpaceSquadron', 108, Colors.GREEN, 640, 250)
 playButton = Button('Play', 540, 420)
@@ -22,17 +26,18 @@ class Menu:
     
     def __init__(self):
         self.running = False
-        self.choice = Menu.Choice.NONE
+        self.choice  = Menu.Choice.NONE
         
     # Runs the app menu
     def run(self):
         self.running = True
         while self.running:
             self.handle_events()
+            background.scroll()
             self.render()
 
     def render(self):
-        Screen.draw_background(Resources.images['Background'])
+        background.draw()
 
         titleText.draw()
         playButton.draw()
@@ -59,7 +64,7 @@ class Menu:
                     self.choose_item(Menu.Choice.EXIT)
 
     def choose_item(self, choice):
-        self.choice = choice
+        self.choice  = choice
         self.running = False
 
     def get_choice(self):
