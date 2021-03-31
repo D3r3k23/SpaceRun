@@ -1,5 +1,6 @@
 
 from GameObject import GameObject
+from Explosion  import Explosion
 import Screen
 import Resources
 import Util
@@ -14,7 +15,7 @@ ACCEL_FACTOR = 36
 SPEED_FACTOR = 20
 MAX_SPEED    = 25
 
-crashSound = Resources.sounds['Explosion']
+explosionSound = Resources.sounds['Explosion']
 
 class Player(GameObject):
     def __init__(self):
@@ -27,29 +28,37 @@ class Player(GameObject):
 
         self.score = 0
         self.alive = True
+        self.explosion = None
     
-    def move(self, ts):
+    def draw(self):
+        if self.alive:
+            super().draw()
+        elif self.explosion is not None:
+            self.explosion.draw()
+    
+    def update(self, ts):
         if self.alive:
             if Util.is_key_pressed(pygame.K_SPACE):
                 self.acelY = -1.0
             else:
                 self.acelY = 1.0
 
-        self.velY += ACCEL_FACTOR * self.acelY * ts
-        self.velY = Util.clamp(self.velY, -MAX_SPEED, MAX_SPEED)
+            self.velY += ACCEL_FACTOR * self.acelY * ts
+            self.velY = Util.clamp(self.velY, -MAX_SPEED, MAX_SPEED)
 
-        self.posY += SPEED_FACTOR * self.velY * ts
+            self.posY += SPEED_FACTOR * self.velY * ts
 
-        self.rect.centery = self.posY
+            self.rect.centery = self.posY
+        
+        elif self.explosion is not None:
+            self.explosion.update(ts)
     
     def kill(self, explode=False):
         self.alive = False
-        self.acelY = 0.0
-        self.velY  = 0.0
 
         if explode:
-            self.img = Resources.images['Explosion5']
-            crashSound.play()
+            self.explosion = Explosion(self.rect.centerx, self.rect.centery)
+            explosionSound.play()
     
     def is_alive(self):
         return self.alive

@@ -39,19 +39,21 @@ class Menu:
         
     def handle_events(self):
         for event in pygame.event.get():
-            if not App.handle_event(event):
-                if event.type == pygame.KEYUP:
-                    if event.key == pygame.K_SPACE:
-                        self.choose_item(Menu.Choice.PLAY)
+            if App.handle_event(event):
+                continue
 
-                elif event.type == pygame.MOUSEBUTTONUP:
-                    pos = Util.get_mouse_pos()
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_SPACE:
+                    self.choose_item(Menu.Choice.PLAY)
 
-                    if playButton.contains(pos):
-                        self.choose_item(Menu.Choice.PLAY)
+            elif event.type == pygame.MOUSEBUTTONUP:
+                pos = Util.get_mouse_pos()
 
-                    elif exitButton.contains(pos):
-                        self.choose_item(Menu.Choice.EXIT)
+                if playButton.contains(pos):
+                    self.choose_item(Menu.Choice.PLAY)
+
+                elif exitButton.contains(pos):
+                    self.choose_item(Menu.Choice.EXIT)
 
     def choose_item(self, choice):
         self.choice = choice

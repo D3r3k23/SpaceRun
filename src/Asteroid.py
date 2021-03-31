@@ -39,7 +39,7 @@ class Asteroid(GameObject):
         self.pastPlayer = False
         self.toDelete   = False
       
-    def move(self, ts, playerSpeed):
+    def update(self, ts, playerSpeed):
         self.posX -= SPEED_FACTOR * playerSpeed * self.velX * ts
         self.rect.centerx = self.posX
 

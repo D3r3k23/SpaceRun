@@ -15,8 +15,12 @@ import random
 import pygame
 
 ASTEROID_SPAWN_INT = 1
+MAX_TS = 0.2
 
 gameOverText = Text('GAME OVER!', 'SpaceSquadron', 64, Colors.RED, 640, 360)
+thrustSound = Resources.sounds['Thrust']
+thrustSoundChannel = pygame.mixer.Channel(0)
+pygame.mixer.set_reserved(1)
 
 class Game:
     def __init__(self):
@@ -40,8 +44,8 @@ class Game:
             self.handle_events()
 
             if not self.paused:
-                self.player.move(ts)
-                self.move_asteroids(ts)
+                self.player.update(ts)
+                self.update_asteroids(ts)
                 self.despawn_asteroids()
                 
                 if self.player.is_alive():
@@ -50,6 +54,8 @@ class Game:
                 
                 self.handle_collisions()
                 self.render()
+        
+        pygame.mixer.stop()
 
     def render(self):
         for asteroid in self.asteroids:
@@ -65,31 +71,42 @@ class Game:
 
     def handle_events(self):
         for event in pygame.event.get():
-            if not App.handle_event(event):
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        if self.player.is_alive():
-                            self.toggle_paused()
-                        else:
-                            self.running = False
+            if App.handle_event(event):
+                continue
+
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    if self.player.is_alive():
+                        self.toggle_paused()
+                    else:
+                        self.running = False
+                    
+                elif event.key == pygame.K_SPACE:
+                    if not self.paused and self.player.is_alive():
+                        thrustSoundChannel.play(thrustSound)
+            
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_SPACE:
+                    thrustSoundChannel.stop()
     
     def handle_collisions(self):
         if not self.player.in_bounds():
-            self.player.kill()
+            self.game_over(crash=False)
         
-        for asteroid in self.asteroids:
-            if GameObject.collision(asteroid, self.player):
-                self.player.kill(explode=True)
+        if self.player.is_alive():
+            for asteroid in self.asteroids:
+                if GameObject.collision(asteroid, self.player):
+                    self.game_over(crash=True)
     
     def get_timestep(self):
         newFrameTime = time()
         ts = newFrameTime - self.prevFrameTime
         self.prevFrameTime = newFrameTime
-        return ts
+        return min(ts, MAX_TS)
     
-    def move_asteroids(self, ts):
+    def update_asteroids(self, ts):
         for asteroid in self.asteroids:
-            asteroid.move(ts, self.player.get_speed())
+            asteroid.update(ts, self.player.get_speed())
             if not asteroid.pastPlayer and self.player.is_alive():
                 if asteroid.rect.right < self.player.rect.left:
                     asteroid.pass_player()
@@ -108,12 +125,22 @@ class Game:
 
     def despawn_asteroids(self):
         self.asteroids[:] = [ a for a in self.asteroids if not a.toDelete ]
+    
+    def game_over(self, crash=False):
+        self.player.kill(crash)
+        thrustSoundChannel.stop()
 
     def pause(self):
         self.paused = True
+        thrustSoundChannel.pause()
     
     def unpause(self):
         self.paused = False
+        if Util.is_key_pressed(pygame.K_SPACE):
+            thrustSoundChannel.unpause()
     
     def toggle_paused(self):
-        self.paused = not self.paused
+        if self.paused:
+            self.unpause()
+        else:
+            self.pause()

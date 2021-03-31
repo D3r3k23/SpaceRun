@@ -73,21 +73,23 @@ def load_images():
     images['Asteroid3'] = load_image('asteroids', 'asteroid3.png')
     images['Asteroid4'] = load_image('asteroids', 'asteroid4.png')
 
-    images['Explosion1' ] = load_image('explosion', 'explosion1.png')
-    images['Explosion2' ] = load_image('explosion', 'explosion2.png')
-    images['Explosion3' ] = load_image('explosion', 'explosion3.png')
-    images['Explosion4' ] = load_image('explosion', 'explosion4.png')
-    images['Explosion5' ] = load_image('explosion', 'explosion5.png')
-    images['Explosion6' ] = load_image('explosion', 'explosion6.png')
-    images['Explosion7' ] = load_image('explosion', 'explosion7.png')
-    images['Explosion8' ] = load_image('explosion', 'explosion8.png')
-    images['Explosion9' ] = load_image('explosion', 'explosion9.png')
-    images['Explosion10'] = load_image('explosion', 'explosion10.png')
-    images['Explosion11'] = load_image('explosion', 'explosion11.png')
+    images['Explosion'] = [
+        load_image('explosion', 'explosion1.png'),
+        load_image('explosion', 'explosion2.png'),
+        load_image('explosion', 'explosion3.png'),
+        load_image('explosion', 'explosion4.png'),
+        load_image('explosion', 'explosion5.png'),
+        load_image('explosion', 'explosion6.png'),
+        load_image('explosion', 'explosion7.png'),
+        load_image('explosion', 'explosion8.png'),
+        load_image('explosion', 'explosion9.png'),
+        load_image('explosion', 'explosion10.png'),
+        load_image('explosion', 'explosion11.png')
+    ]
 
 def load_sounds():
-    sounds['Explosion'] = load_sound('crash_explosion.wav', 0.1)
-    sounds['Thrust'   ] = load_sound('spaceship_thrust.wav', 0.05)
+    sounds['Explosion'] = load_sound('crash_explosion.ogg', 0.4)
+    sounds['Thrust'   ] = load_sound('spaceship_thrust.ogg', 0.5)
 
 def load_music():
     music.add_song(get_song_path('The Prototypes - Pale Blue Dot.ogg'))
