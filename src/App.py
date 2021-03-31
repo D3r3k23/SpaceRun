@@ -10,7 +10,7 @@ def exit():
     sys.exit()
 
 # Handle app-level events, returns True if event handled
-def handle_app_event(event):
+def handle_event(event):
     if event.type == pygame.QUIT:
         exit()
     
@@ -36,23 +36,3 @@ def handle_app_event(event):
             return True
 
     return False # Event not handled
-    
-
-from Game import Game
-from Menu import Menu
-
-def run():
-    Resources.music.start()
-    running = True
-    menu = Menu()
-
-    while running:
-        menu.run()
-        choice = menu.get_choice()
-
-        if choice == Menu.Choice.PLAY:
-            game = Game()
-            game.play()
-        
-        elif choice == Menu.Choice.EXIT:
-            running = False

@@ -1,15 +1,15 @@
 
-from App        import handle_app_event
-from Text       import Text
-from Score      import Score
-from GameObject import GameObject
-from Player     import Player
-from Asteroid   import Asteroid
+import App
 import Screen
 import Resources
 import Colors
 import Util
 import Config
+from Text       import Text
+from Score      import Score
+from Player     import Player
+from Asteroid   import Asteroid
+from GameObject import GameObject
 
 from time import time
 import random
@@ -66,7 +66,7 @@ class Game:
 
     def handle_events(self):
         for event in pygame.event.get():
-            if not handle_app_event(event):
+            if not App.handle_event(event):
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         if self.player.is_alive():

@@ -1,10 +1,10 @@
 
-from App    import handle_app_event
-from Button import Button
-from Text   import Text
+import App
 import Screen
 import Util
 import Colors
+from Button import Button
+from Text   import Text
 
 from enum import Enum
 import pygame
@@ -39,7 +39,7 @@ class Menu:
         
     def handle_events(self):
         for event in pygame.event.get():
-            if not handle_app_event(event):
+            if not App.handle_event(event):
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_SPACE:
                         self.choose_item(Menu.Choice.PLAY)

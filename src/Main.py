@@ -14,5 +14,20 @@ import Resources
 Resources.load()
 
 import App
-App.run()
+from Menu import Menu
+from Game import Game
+
+Resources.music.start()
+running = True
+menu = Menu()
+while running:
+    menu.run()
+    choice = menu.get_choice()
+    if choice == Menu.Choice.PLAY:
+        game = Game()
+        game.play()
+    
+    elif choice == Menu.Choice.EXIT:
+        running = False
+
 App.exit()
