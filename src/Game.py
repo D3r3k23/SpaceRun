@@ -152,7 +152,10 @@ class Game:
     def unpause(self):
         self.paused = False
         if Util.is_key_pressed(pygame.K_SPACE):
-            thrustSoundChannel.unpause()
+            if thrustSoundChannel.get_busy():
+                thrustSoundChannel.unpause()
+            else:
+                thrustSoundChannel.play(thrustSound) # Check if pressing Space while paused plays sounds after unpause
     
     def toggle_paused(self):
         if self.paused:
