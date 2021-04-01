@@ -14,7 +14,7 @@ class Explosion(Screen.Drawable):
         self.frameNum = 0
         self.active = True
 
-        super().__init__(imgs[0], x, y)
+        super().__init__(imgs[0], x, y, center=True)
     
     def draw(self):
         if self.active:

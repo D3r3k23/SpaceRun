@@ -6,9 +6,6 @@ from enum import Enum
 from time import time
 import pygame
 
-SCROLL_SPEED = 20 # pix/sec
-SCOLL_INT = 1 / SCROLL_SPEED
-
 img = Resources.images['Background']
 
 class Background:
@@ -17,7 +14,7 @@ class Background:
         DOWN = 1
         LEFT = 2
 
-    def __init__(self, dir=0, speed=0):
+    def __init__(self, dir=0, speed=0): # Speed: pix/s
         self.dir = dir
         self.set_speed(speed)
 

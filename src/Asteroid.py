@@ -17,11 +17,11 @@ asteroids = [
 ]
 
 SPEED_FACTOR = 20
-ROTATE_SPEED = 3
+ROTATE_SPEED = 3 # Maybe make them spin as they move
 
 # Random choice of 4 asteroids
 class Asteroid(GameObject):
-    RAND_ROTATION = True
+    RAND_ROTATION = True # Randomly rotates the images on init
 
     def __init__(self, posY):
         spec = random.choice(asteroids)
@@ -33,20 +33,25 @@ class Asteroid(GameObject):
             img = pygame.transform.rotate(img, angle)
 
         self.posX = Screen.WIDTH + (img.get_width() / 2)
-
-        super().__init__(img, self.posX, posY)
-
         self.velX = spec.speed
+
         self.pastPlayer = False
         self.toDelete   = False
-      
+
+        super().__init__(img, self.posX, posY)
+    
+    # Moves asteroid based on player's speed, marks for deletion if past screen
     def update(self, ts, playerSpeed):
-        self.posX -= SPEED_FACTOR * playerSpeed * self.velX * ts
-        self.rect.centerx = self.posX
+        dx = -(SPEED_FACTOR * playerSpeed * self.velX * ts)
+        self.posX += dx
+        self.rect.centerx = round(self.posX)
 
         if self.pastPlayer:
-            if self.posX < -(self.img.get_width() / 2):
+            if self.out_of_bounds():
                 self.toDelete = True
     
     def pass_player(self):
         self.pastPlayer = True
+
+    def out_of_bounds(self):
+        return self.rect.right < 0

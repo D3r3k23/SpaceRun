@@ -20,7 +20,7 @@ MAX_TS = 0.2
 BACK_SPEED_START  = 150
 BACK_SPEED_FACTOR = 100
 background = Background(Background.Dir.LEFT, BACK_SPEED_START)
-gameOverText = Text('GAME OVER!', 'SpaceSquadron', 64, Colors.RED, 640, 360)
+gameOverText = Text('GAME OVER!', 'SpaceSquadron', 64, Colors.RED, 640, 360, center=True)
 
 thrustSound = Resources.sounds['Thrust']
 thrustSoundChannel = pygame.mixer.Channel(0)
@@ -46,24 +46,28 @@ class Game:
 
         while self.running:
             ts = self.get_timestep()
-            self.handle_events()
+
+            for e in pygame.event.get():
+                self.handle_event(e)
 
             if not self.paused:
                 self.player.update(ts)
                 self.update_asteroids(ts)
                 self.despawn_asteroids()
                 
-                if self.player.is_alive():
+                if self.player.alive:
                     if self.check_asteroid_spawn(ts):
                         self.spawn_asteroid()
                 
-                background.scroll()
                 if not self.godMode:
                     self.handle_collisions()
+                
+                background.scroll()
                 self.render()
         
         pygame.mixer.stop()
 
+    # Draw images to screen and update display
     def render(self):
         background.draw()
 
@@ -73,59 +77,62 @@ class Game:
         self.player.draw()
 
         self.scoreText.draw()
-        if not self.player.is_alive():
+        if not self.player.alive:
             gameOverText.draw()
         
         Screen.display()
 
-    def handle_events(self):
-        for event in pygame.event.get():
-            if App.handle_event(event):
-                continue
+    def handle_event(self, event):
+        if App.handle_event(event):
+            return
 
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    if self.player.is_alive():
-                        self.toggle_paused()
-                    else:
-                        self.running = False
-                
-                elif event.key == pygame.K_c:
-                    self.godMode = not self.godMode
-
-                elif event.key == pygame.K_SPACE:
-                    if not self.paused and self.player.is_alive():
-                        thrustSoundChannel.play(thrustSound)
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                if self.player.alive:
+                    self.toggle_paused()
+                else:
+                    self.running = False
             
-            elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_SPACE:
-                    thrustSoundChannel.stop()
+            elif event.key == pygame.K_c:
+                self.godMode = not self.godMode
+
+            elif event.key == pygame.K_SPACE:
+                if not self.paused and self.player.alive:
+                    thrustSoundChannel.play(thrustSound)
+        
+        elif event.type == pygame.KEYUP:
+            if event.key == pygame.K_SPACE:
+                thrustSoundChannel.stop()
     
+    # Handles player out-of-bounds and collisions
     def handle_collisions(self):
         if not self.player.in_bounds():
             self.game_over(crash=False)
         
-        if self.player.is_alive():
+        if self.player.alive:
             for asteroid in self.asteroids:
                 if GameObject.collision(asteroid, self.player):
                     self.game_over(crash=True)
     
+    # Time since last frame in seconds
     def get_timestep(self):
         newFrameTime = time()
         ts = newFrameTime - self.prevFrameTime
         self.prevFrameTime = newFrameTime
         return min(ts, MAX_TS)
     
+    # Move asteroids and update player score
     def update_asteroids(self, ts):
         for asteroid in self.asteroids:
             asteroid.update(ts, self.player.get_speed())
-            if not asteroid.pastPlayer and self.player.is_alive():
+            if not asteroid.pastPlayer and self.player.alive:
                 if asteroid.rect.right < self.player.rect.left:
                     asteroid.pass_player()
                     score = self.player.inc_score()
                     self.scoreText.set_score(score)
                     background.set_speed(self.player.get_speed() * BACK_SPEED_FACTOR + (BACK_SPEED_START - BACK_SPEED_FACTOR))
     
+    # Check if in asteroid should spawn
     def check_asteroid_spawn(self, ts):
         self.sinceLastSpawn += ts
         spawnInterval = 1.5 - ((self.asteroids[-1].velX - 8) / 10) - ((self.player.get_speed() - 1) * 1.2)
@@ -138,6 +145,7 @@ class Game:
         self.asteroids.append(asteroid)
         self.sinceLastSpawn = 0.0
 
+    # Remove asteroids marked for deletion
     def despawn_asteroids(self):
         self.asteroids[:] = [ a for a in self.asteroids if not a.toDelete ]
     

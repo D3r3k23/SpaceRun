@@ -16,7 +16,7 @@ class Button(Screen.Drawable):
         self.img_normal = pygame.transform.scale(img_normal, (SIZE, SIZE))
         self.img_active = pygame.transform.scale(img_active, (SIZE, SIZE))
 
-        super().__init__(self.img_normal, x, y)
+        super().__init__(self.img_normal, x, y, center=True)
         
         self.hovered = False
     

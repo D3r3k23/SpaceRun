@@ -14,7 +14,7 @@ import pygame
 
 background = Background(Background.Dir.DOWN, 15)
 
-titleText = Text('Space Run', 'SpaceSquadron', 108, Colors.GREEN, 640, 250)
+titleText = Text('Space Run', 'SpaceSquadron', 108, Colors.GREEN, 640, 250, center=True)
 playButton = Button('Play', 540, 420)
 exitButton = Button('Exit', 740, 420)
 
@@ -32,9 +32,12 @@ class Menu:
     def run(self):
         self.running = True
         while self.running:
-            self.handle_events()
+            for e in pygame.event.get():
+                self.handle_event(e)
+    
             background.scroll()
             self.render()
+
         return self.choice
 
     def render(self):
@@ -46,23 +49,22 @@ class Menu:
 
         Screen.display()
         
-    def handle_events(self):
-        for event in pygame.event.get():
-            if App.handle_event(event):
-                continue
+    def handle_event(self, event):
+        if App.handle_event(event):
+            return
 
-            elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_SPACE:
-                    self.choose_item(Menu.Choice.PLAY)
+        elif event.type == pygame.KEYUP:
+            if event.key == pygame.K_SPACE:
+                self.choose_item(Menu.Choice.PLAY)
 
-            elif event.type == pygame.MOUSEBUTTONUP:
-                pos = Util.get_mouse_pos()
+        elif event.type == pygame.MOUSEBUTTONUP:
+            pos = Util.get_mouse_pos()
 
-                if playButton.contains(pos):
-                    self.choose_item(Menu.Choice.PLAY)
+            if playButton.contains(pos):
+                self.choose_item(Menu.Choice.PLAY)
 
-                elif exitButton.contains(pos):
-                    self.choose_item(Menu.Choice.EXIT)
+            elif exitButton.contains(pos):
+                self.choose_item(Menu.Choice.EXIT)
 
     def choose_item(self, choice):
         self.choice  = choice

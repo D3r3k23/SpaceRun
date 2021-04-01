@@ -17,11 +17,16 @@ def display():
     pygame.display.update()
     clear()
 
+# Base class for drawable objects
+# Created from image and coordinates, stores image and rect
 class Drawable:
-    def __init__(self, img, x, y): # x, y: center coordinates
+    def __init__(self, img, x, y, center=False): # x, y: center or (left, top) coordinates
         width  = img.get_width()
         height = img.get_height()
-        origin = (x - (width / 2), y - (height / 2))
+        if center:
+            origin = (x - (width / 2), y - (height / 2))
+        else:
+            origin = (x, y)
     
         self.img  = img
         self.rect = pygame.Rect(origin, (width, height))

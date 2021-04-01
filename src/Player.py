@@ -45,9 +45,10 @@ class Player(GameObject):
 
             self.velY += ACCEL_FACTOR * self.acelY * ts
             self.velY = Util.clamp(self.velY, -MAX_SPEED, MAX_SPEED)
-
-            self.posY += SPEED_FACTOR * self.velY * ts
-            self.rect.centery = self.posY
+            dy = SPEED_FACTOR * self.velY * ts
+            self.posY += dy
+            print(self.posY)
+            self.rect.centery = round(self.posY)
         
         elif self.explosion is not None:
             self.explosion.update(ts)
@@ -58,9 +59,6 @@ class Player(GameObject):
         if explode:
             self.explosion = Explosion(self.rect.centerx, self.rect.centery)
             explosionSound.play()
-    
-    def is_alive(self):
-        return self.alive
     
     def in_bounds(self):
         return (-10 < self.rect.bottom) and (self.rect.top < Screen.HEIGHT)
