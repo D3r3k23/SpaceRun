@@ -25,8 +25,8 @@ import App
 from Menu import Menu
 from Game import Game
 
-Resources.music.start()
 menu = Menu()
+Resources.music.start()
 
 while True:
     choice = menu.run()
