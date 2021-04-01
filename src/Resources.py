@@ -1,17 +1,23 @@
 
 from Music import Music
-import Screen
 
 import os.path
 import pygame
 
 resource_dir = 'resources'
 
-images = {}
-sounds = {}
+images = {} # Name: pygame.Surface
+sounds = {} # Name: pygame.mixer.Sound
 
 music = Music()
-fonts = {}
+fonts = {} # Name: file-path
+
+# Loads all resources
+def load():
+    load_images()
+    load_sounds()
+    load_music()
+    load_fonts()
 
 # Loads single image
 def load_image(folder, fn):
@@ -40,31 +46,24 @@ def get_song_path(fn):
 def get_font_path(fn):
     return os.path.join(resource_dir, 'fonts', fn)
 
-def load_font(name, size):
-    if name == None:
-        return pygame.font.SysFont(None, size)
-    else:
-        try:
-            font = pygame.font.Font(fonts[name], size)
-        except (pygame.error, FileNotFoundError):
-            return pygame.font.SysFont(None, size) # Default to pygame default font
-        
-        return font
-
-def load():
-    load_images()
-    load_sounds()
-    load_music()
-    load_fonts()
+def load_font(size): # Size in pixels
+    try:
+        font = pygame.font.Font(fonts[name], size)
+    except (pygame.error, FileNotFoundError):
+        return pygame.font.SysFont(None, size) # Default to pygame default font
+    
+    return font
 
 def load_images():
-    images['Background'] = pygame.transform.scale(load_image('background', 'starfield.png'), Screen.RES)
-    
-    images['Spaceship'] = load_image('spaceship', 'spaceship.png')
-    images['Exhaust1' ] = load_image('spaceship', 'exhaust1.png')
-    images['Exhaust2' ] = load_image('spaceship', 'exhaust2.png')
-    images['Exhaust3' ] = load_image('spaceship', 'exhaust3.png')
-    images['Exhaust4' ] = load_image('spaceship', 'exhaust4.png')
+    images['Background'] = load_image('background', 'starfield.png')
+    images['Spaceship' ] = load_image('spaceship ', 'spaceship.png')
+
+    images['Exhaust'] = [ # Animation
+        load_image('spaceship', 'exhaust1.png'),
+        load_image('spaceship', 'exhaust2.png'),
+        load_image('spaceship', 'exhaust3.png'),
+        load_image('spaceship', 'exhaust4.png')
+    ]
 
     images['Play'       ] = load_image('buttons', 'play_button.png')
     images['Play_active'] = load_image('buttons', 'play_button_active.png')
@@ -76,7 +75,7 @@ def load_images():
     images['Asteroid3'] = load_image('asteroids', 'asteroid3.png')
     images['Asteroid4'] = load_image('asteroids', 'asteroid4.png')
 
-    images['Explosion'] = [
+    images['Explosion'] = [ # Animation
         load_image('explosion', 'explosion1.png'),
         load_image('explosion', 'explosion2.png'),
         load_image('explosion', 'explosion3.png'),

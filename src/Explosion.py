@@ -6,7 +6,7 @@ import pygame
 
 imgs = Resources.images['Explosion']
 
-ANIMATION_INT = 0.08
+FRAME_INT = 0.08 # Frame interval for animation in seconds
 
 class Explosion(Screen.Drawable):
     def __init__(self, x, y):
@@ -20,10 +20,11 @@ class Explosion(Screen.Drawable):
         if self.active:
             super().draw()
     
+    # Check if animation should move to next frame
     def update(self, ts):
         if self.active:
             self.sinceLastFrame += ts
-            if self.sinceLastFrame >= ANIMATION_INT:
+            if self.sinceLastFrame >= FRAME_INT:
                 self.next_frame()
 
     def next_frame(self):

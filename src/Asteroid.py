@@ -11,12 +11,12 @@ AsteroidSpec = namedtuple('AsteroidSpec', ['img', 'speed', 'size'])
 
 asteroids = [
     AsteroidSpec(img = 'Asteroid1', speed = 12, size = (100, 89 )),
-    AsteroidSpec(img = 'Asteroid2', speed = 18, size = (75,  66 )),
-    AsteroidSpec(img = 'Asteroid3', speed = 15, size = (120, 120)),
+    AsteroidSpec(img = 'Asteroid2', speed = 16, size = (75,  66 )),
+    AsteroidSpec(img = 'Asteroid3', speed = 14, size = (120, 120)),
     AsteroidSpec(img = 'Asteroid4', speed = 10, size = (160, 160))
 ]
 
-SPEED_FACTOR = 20
+SPEED_FACTOR = 22
 ROTATE_SPEED = 3 # Maybe make them spin as they move
 
 # Random choice of 4 asteroids
@@ -32,7 +32,7 @@ class Asteroid(GameObject):
             angle = random.randint(0, 35) * 10
             img = pygame.transform.rotate(img, angle)
 
-        self.posX = Screen.WIDTH + (img.get_width() / 2)
+        self.posX = Screen.width() + (img.get_width() / 2)
         self.velX = spec.speed
 
         self.pastPlayer = False

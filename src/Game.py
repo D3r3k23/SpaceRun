@@ -140,7 +140,7 @@ class Game:
         return self.sinceLastSpawn >= spawnInterval
     
     def spawn_asteroid(self):
-        posY = random.randrange(Screen.HEIGHT - 50)
+        posY = random.randrange(Screen.height() - 50)
         asteroid = Asteroid(posY)
         self.asteroids.append(asteroid)
         self.sinceLastSpawn = 0.0

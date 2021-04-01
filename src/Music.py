@@ -8,6 +8,7 @@ VOLUME_INIT = 0.2
 VOLUME_STEP = 0.025
 VOLUME_MAX  = 0.8
 
+# Loads and plays music throught application
 class Music:
     EN_SHUFFLE = True
     SONG_END = pygame.USEREVENT + 1 # pygame.mixer.music song end event
@@ -19,6 +20,7 @@ class Music:
         
         pygame.mixer.music.set_endevent(Music.SONG_END)
     
+    # Add song to the queue
     def add_song(self, fp):
         try:
             pygame.mixer.music.load(fp)
@@ -40,7 +42,12 @@ class Music:
             self.enabled = True
             self.currentSong = 0
             self.play_song()
+    
+    def stop(self):
+        self.enabled = False
+        pygame.mixer.music.stop()
 
+    # Plays next song
     def next_song(self):
         if self.enabled:
             if self.currentSong == (len(self.songs) - 1):
@@ -50,6 +57,7 @@ class Music:
 
             self.play_song()
     
+    # Plays previous song
     def prev_song(self):
         if self.enabled:
             if self.currentSong == 0:
@@ -58,7 +66,8 @@ class Music:
                 self.currentSong -= 1
             
             self.play_song()
-            
+    
+    # Plays current song
     def play_song(self):
         if self.enabled:
             pygame.mixer.music.load(self.songs[self.currentSong])

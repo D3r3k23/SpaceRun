@@ -6,7 +6,7 @@ from enum import Enum
 from time import time
 import pygame
 
-img = Resources.images['Background']
+img = pygame.transform.scale(Resources.images['Background'], Screen.res())
 
 class Background:
     class Dir(Enum):
@@ -19,7 +19,7 @@ class Background:
         self.set_speed(speed)
 
         self.lastScrollTime = time()
-        self.dividerX = Screen.WIDTH
+        self.dividerX = Screen.width()
         self.dividerY = 0
     
     def set_speed(self, speed):
@@ -35,7 +35,7 @@ class Background:
         if time() - self.lastScrollTime >= self.scrollInt:
             self.lastScrollTime = time()
             self.dividerY += 1
-            if self.dividerY == Screen.HEIGHT:
+            if self.dividerY == Screen.height():
                 self.dividerY = 0
     
     def scroll_left(self):
@@ -43,15 +43,15 @@ class Background:
             self.lastScrollTime = time()
             self.dividerX -= 1
             if self.dividerX == 0:
-                self.dividerX = Screen.WIDTH
+                self.dividerX = Screen.width()
 
     def draw(self):
         if self.dir == Background.Dir.DOWN:
-            origins = ((0, self.dividerY), (0, self.dividerY - Screen.HEIGHT))
+            origins = ((0, self.dividerY), (0, self.dividerY - Screen.height()))
         elif self.dir == Background.Dir.LEFT:
-            origins = ((self.dividerX, 0), (self.dividerX - Screen.WIDTH, 0))
+            origins = ((self.dividerX, 0), (self.dividerX - Screen.width(), 0))
         else:
-            origins = ((0, 0), (0, )) # no scrolling
+            origins = ((0, 0), (0, 0)) # no scrolling
 
         for origin in origins:
-            Screen.draw_to_screen(img, pygame.Rect(origin, Screen.RES))
+            Screen.draw_to_screen(img, pygame.Rect(origin, Screen.res()))

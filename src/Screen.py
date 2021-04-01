@@ -3,9 +3,23 @@ import Colors
 
 import pygame
 
-RES = WIDTH, HEIGHT = 1280, 720
+screen = None
 
-screen = pygame.display.set_mode(RES)
+def init(width, height):
+    global screen
+    screen = pygame.display.set_mode((width, height))
+
+def width():
+    return screen.get_width()
+
+def height():
+    return screen.get_height()
+
+def res():
+    return (screen.get_width(), screen.get_height())
+
+def rect():
+    return screen.get_rect()
 
 def clear():
     screen.fill(Colors.BLACK)

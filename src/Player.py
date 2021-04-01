@@ -24,30 +24,32 @@ class Player(GameObject):
 
         self.posY  = START_Y
         self.velY  = 0.0
-        self.acelY = 0.0
 
         self.score = 0
         self.alive = True
         self.explosion = None
     
+    # Draw player or explosion
     def draw(self):
         if self.alive:
             super().draw()
         elif self.explosion is not None:
             self.explosion.draw()
     
+    # Adjust acceleration based on Space Bar status, move player
+    # If player dead: update explosion
     def update(self, ts):
         if self.alive:
             if Util.is_key_pressed(pygame.K_SPACE):
-                self.acelY = -1.0
+                acelY = -1.0
             else:
-                self.acelY = 0.8
+                acelY = 0.8
 
-            self.velY += ACCEL_FACTOR * self.acelY * ts
+            self.velY += ACCEL_FACTOR * acelY * ts
             self.velY = Util.clamp(self.velY, -MAX_SPEED, MAX_SPEED)
             dy = SPEED_FACTOR * self.velY * ts
+
             self.posY += dy
-            print(self.posY)
             self.rect.centery = round(self.posY)
         
         elif self.explosion is not None:
@@ -61,7 +63,7 @@ class Player(GameObject):
             explosionSound.play()
     
     def in_bounds(self):
-        return (-10 < self.rect.bottom) and (self.rect.top < Screen.HEIGHT)
+        return (-10 < self.rect.bottom) and (self.rect.top < Screen.height())
 
     def get_score(self):
         return self.score
