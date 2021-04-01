@@ -19,7 +19,7 @@ MAX_TS = 0.2
 
 BACK_SPEED_START  = 150
 BACK_SPEED_FACTOR = 100
-background = Background(Background.Dir.LEFT, BACK_SPEED_START)
+background = Background(Background.ScrollDir.LEFT, BACK_SPEED_START)
 gameOverText = Text('GAME OVER!', 'SpaceSquadron', 64, Colors.RED, 640, 360, center=True)
 
 thrustSound = Resources.sounds['Thrust']
@@ -135,7 +135,7 @@ class Game:
     # Check if in asteroid should spawn
     def check_asteroid_spawn(self, ts):
         self.sinceLastSpawn += ts
-        spawnInterval = 1.5 - ((self.asteroids[-1].velX - 8) / 10) - ((self.player.get_speed() - 1) * 1.2)
+        spawnInterval = 1.5 - ((self.asteroids[-1].velX - 6) / 10) - ((self.player.get_speed() - 1) * 1.2)
         spawnInterval = max(spawnInterval, 0.1)
         return self.sinceLastSpawn >= spawnInterval
     

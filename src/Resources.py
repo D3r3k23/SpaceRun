@@ -19,9 +19,20 @@ def load():
     load_music()
     load_fonts()
 
-# Loads single image
+def get_image_path(folder, fn):
+    return os.path.join(resource_dir, 'images', folder, fn)
+
+def get_sound_path(fn):
+    return os.path.join(resource_dir, 'sounds', fn)
+
+def get_song_path(fn):
+    return os.path.join(resource_dir, 'music', fn)
+
+def get_font_path(fn):
+    return os.path.join(resource_dir, 'fonts', fn)
+
 def load_image(folder, fn):
-    fp = os.path.join(resource_dir, 'images', folder, fn)
+    fp = get_image_path(folder, fn)
     try:
         surf = pygame.image.load(fp)
     except (pygame.error, FileNotFoundError):
@@ -29,9 +40,8 @@ def load_image(folder, fn):
 
     return surf.convert_alpha() if surf.get_alpha() else surf.convert()
 
-# Loads single sound
 def load_sound(fn, vol):
-    fp = os.path.join(resource_dir, 'sounds', fn)
+    fp = get_sound_path(fn)
     try:
         sound = pygame.mixer.Sound(fp)
     except (pygame.error, FileNotFoundError):
@@ -39,12 +49,6 @@ def load_sound(fn, vol):
     
     sound.set_volume(vol)
     return sound
-
-def get_song_path(fn):
-    return os.path.join(resource_dir, 'music', fn)
-
-def get_font_path(fn):
-    return os.path.join(resource_dir, 'fonts', fn)
 
 def load_font(font, size): # Font name | Size in pixels
     try:

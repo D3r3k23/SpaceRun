@@ -16,7 +16,7 @@ asteroids = [
     AsteroidSpec(img = 'Asteroid4', speed = 10, size = (160, 160))
 ]
 
-SPEED_FACTOR = 22
+SPEED_FACTOR = 23
 ROTATE_SPEED = 3 # Maybe make them spin as they move
 
 # Random choice of 4 asteroids

@@ -12,7 +12,7 @@ from time import time
 from enum import Enum
 import pygame
 
-background = Background(Background.Dir.DOWN, 15)
+background = Background(Background.ScrollDir.DOWN, 15)
 
 titleText = Text('Space Run', 'SpaceSquadron', 108, Colors.GREEN, 640, 250, center=True)
 playButton = Button('Play', 540, 420)

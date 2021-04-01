@@ -9,7 +9,7 @@ import pygame
 img = pygame.transform.scale(Resources.images['Background'], Screen.res())
 
 class Background:
-    class Dir(Enum):
+    class ScrollDir(Enum):
         NONE = 0
         DOWN = 1
         LEFT = 2
@@ -26,9 +26,9 @@ class Background:
         self.scrollInt = 1 / speed
 
     def scroll(self):
-        if self.dir == Background.Dir.DOWN:
+        if self.dir == Background.ScrollDir.DOWN:
             self.scroll_down()
-        elif self.dir == Background.Dir.LEFT:
+        elif self.dir == Background.ScrollDir.LEFT:
             self.scroll_left()
 
     def scroll_down(self):
@@ -46,9 +46,9 @@ class Background:
                 self.dividerX = Screen.width()
 
     def draw(self):
-        if self.dir == Background.Dir.DOWN:
+        if self.dir == Background.ScrollDir.DOWN:
             origins = ((0, self.dividerY), (0, self.dividerY - Screen.height()))
-        elif self.dir == Background.Dir.LEFT:
+        elif self.dir == Background.ScrollDir.LEFT:
             origins = ((self.dividerX, 0), (self.dividerX - Screen.width(), 0))
         else:
             origins = ((0, 0), (0, 0)) # no scrolling
