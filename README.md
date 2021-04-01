@@ -20,7 +20,7 @@ Simple cave runner game written in Python using Pygame
 
 ## TODO
 
-* Planet surface in game, speed based on player speed
+* Planet surface in game, speed based on player speed?
 * Exhaust/flash from player during thrust (flash during thrust, always exhaust?)
 * Add window icon
 * PyInstaller

@@ -4,9 +4,9 @@ import Util
 import random
 import pygame
 
-VOLUME_INIT = 0.2
+VOLUME_INIT = 0.25
 VOLUME_STEP = 0.025
-VOLUME_MAX  = 0.8
+VOLUME_MAX  = 0.5
 
 # Loads and plays music throught application
 class Music:

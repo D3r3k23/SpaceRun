@@ -46,17 +46,15 @@ def get_song_path(fn):
 def get_font_path(fn):
     return os.path.join(resource_dir, 'fonts', fn)
 
-def load_font(size): # Size in pixels
+def load_font(font, size): # Font name | Size in pixels
     try:
-        font = pygame.font.Font(fonts[name], size)
+        return pygame.font.Font(fonts[font], size)
     except (pygame.error, FileNotFoundError):
-        return pygame.font.SysFont(None, size) # Default to pygame default font
-    
-    return font
+        return pygame.font.SysFont(None, size) # Default to pygame default fonts
 
 def load_images():
     images['Background'] = load_image('background', 'starfield.png')
-    images['Spaceship' ] = load_image('spaceship ', 'spaceship.png')
+    images['Spaceship' ] = load_image('spaceship' , 'spaceship.png')
 
     images['Exhaust'] = [ # Animation
         load_image('spaceship', 'exhaust1.png'),
