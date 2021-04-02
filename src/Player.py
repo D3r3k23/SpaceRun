@@ -4,6 +4,7 @@ import Resources
 import Util
 from GameObject import GameObject
 from Explosion  import Explosion
+from Exhaust    import Exhaust
 
 from time import time
 from math import sqrt
@@ -18,9 +19,12 @@ MAX_SPEED    = 25
 explosionSound = Resources.sounds['Explosion']
 
 class Player(GameObject):
+    SHOW_EXHAUST = True
+
     def __init__(self):
-        img = Resources.images['Spaceship']
-        super().__init__(img, START_X, START_Y)
+        self.img_normal = Resources.images['Spaceship']
+        self.img_thrust = Resources.images['Spaceship_turbo']
+        super().__init__(self.img_normal, START_X, START_Y)
 
         self.posY  = START_Y
         self.velY  = 0.0
@@ -28,11 +32,14 @@ class Player(GameObject):
         self.score = 0
         self.alive = True
         self.explosion = None
+        self.exhaust = Exhaust(self.rect)
     
     # Draw player or explosion
     def draw(self):
         if self.alive:
             super().draw()
+            if Player.SHOW_EXHAUST:
+                self.exhaust.draw()
         elif self.explosion is not None:
             self.explosion.draw()
     
@@ -42,8 +49,10 @@ class Player(GameObject):
         if self.alive:
             if Util.is_key_pressed(pygame.K_SPACE):
                 acelY = -1.0
+                self.img = self.img_thrust
             else:
                 acelY = 0.8
+                self.img = self.img_normal
 
             self.velY += ACCEL_FACTOR * acelY * ts
             self.velY = Util.clamp(self.velY, -MAX_SPEED, MAX_SPEED)
@@ -51,6 +60,8 @@ class Player(GameObject):
 
             self.posY += dy
             self.rect.centery = round(self.posY)
+
+            self.exhaust.update(ts, self.rect, self.get_speed())
         
         elif self.explosion is not None:
             self.explosion.update(ts)

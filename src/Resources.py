@@ -58,7 +58,9 @@ def load_font(font, size): # Font name | Size in pixels
 
 def load_images():
     images['Background'] = load_image('background', 'starfield.png')
-    images['Spaceship' ] = load_image('spaceship' , 'spaceship.png')
+
+    images['Spaceship'      ] = load_image('spaceship', 'spaceship.png')
+    images['Spaceship_turbo'] = load_image('spaceship', 'spaceship_turbo.png', )
 
     images['Exhaust'] = [ # Animation
         load_image('spaceship', 'exhaust1.png'),
@@ -92,8 +94,11 @@ def load_images():
     ]
 
 def load_sounds():
-    sounds['Explosion'] = load_sound('crash_explosion.ogg', 0.4)
+    sounds['Explosion'] = load_sound('crash_explosion.ogg',  0.4)
     sounds['Thrust'   ] = load_sound('spaceship_thrust.ogg', 0.5)
+    
+    # Reserve channel for thrust sound (channel 0)
+    pygame.mixer.set_reserved(1)
 
 def load_music():
     music.add_song(get_song_path('The Prototypes - Pale Blue Dot.ogg'))

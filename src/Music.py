@@ -8,7 +8,7 @@ VOLUME_INIT = 0.25
 VOLUME_STEP = 0.025
 VOLUME_MAX  = 0.5
 
-# Loads and plays music throught application
+# Loads and plays music throughout application
 class Music:
     EN_SHUFFLE = True
     SONG_END = pygame.USEREVENT + 1 # pygame.mixer.music song end event

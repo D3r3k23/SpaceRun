@@ -24,7 +24,6 @@ gameOverText = Text('GAME OVER!', 'SpaceSquadron', 64, Colors.RED, 640, 360, cen
 
 thrustSound = Resources.sounds['Thrust']
 thrustSoundChannel = pygame.mixer.Channel(0)
-pygame.mixer.set_reserved(1)
 
 class Game:
     def __init__(self):
@@ -95,6 +94,9 @@ class Game:
             
             elif event.key == pygame.K_c:
                 self.godMode = not self.godMode
+            
+            elif event.key == pygame.K_m:
+                self.running = False
 
             elif event.key == pygame.K_SPACE:
                 if not self.paused and self.player.alive:
