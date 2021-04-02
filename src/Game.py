@@ -39,6 +39,8 @@ class Game:
         self.prevFrameTime = 0
 
     def play(self):
+        Util.hide_mouse_on_hover()
+
         self.running = True
         self.prevFrameTime = time()
         self.spawn_asteroid()
@@ -65,6 +67,7 @@ class Game:
                 self.render()
         
         pygame.mixer.stop()
+        Util.show_mouse_on_hover()
 
     # Draw images to screen and update display
     def render(self):
@@ -153,14 +156,17 @@ class Game:
     
     def game_over(self, crash=False):
         self.player.kill(crash)
+        Util.show_mouse_on_hover()
         thrustSoundChannel.stop()
 
     def pause(self):
         self.paused = True
+        Util.show_mouse_on_hover()
         thrustSoundChannel.pause()
     
     def unpause(self):
         self.paused = False
+        Util.hide_mouse_on_hover()
         if Util.is_key_pressed(pygame.K_SPACE):
             if thrustSoundChannel.get_busy():
                 thrustSoundChannel.unpause()
