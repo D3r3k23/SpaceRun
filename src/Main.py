@@ -9,7 +9,6 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = 'True'
 
 import pygame
 pygame.init()
-pygame.display.set_caption('SpaceRun')
 
 #-------- User setup --------#
 
@@ -33,6 +32,5 @@ while True:
     if choice == Menu.Choice.PLAY:
         game = Game()
         game.play()
-    
     elif choice == Menu.Choice.EXIT:
         App.exit()
