@@ -16,3 +16,9 @@ def is_key_pressed(key):
 
 def get_mouse_pos():
     return pygame.mouse.get_pos()
+
+def hide_mouse_on_hover():
+    pygame.mouse.set_visible(False)
+
+def show_mouse_on_hover():
+    pygame.mouse.set_visible(True)
