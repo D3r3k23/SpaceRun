@@ -1,4 +1,5 @@
 
+import Resources
 import Colors
 
 import pygame
@@ -7,6 +8,10 @@ screen = None
 
 def init(width, height):
     global screen
+
+    icon = pygame.image.load(Resources.get_image_path('icon', 'icon.png'))
+    pygame.display.set_icon(icon)
+
     screen = pygame.display.set_mode((width, height))
 
 def width():

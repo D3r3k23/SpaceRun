@@ -3,7 +3,10 @@
 
 Simple cave runner game written in Python using Pygame
 
+![Menu](media/menu.png?raw=true)
 ![Game](media/game.png?raw=true)
+
+[Gameplay](youtube.com)
 
 
 ## Controls
@@ -21,5 +24,4 @@ Simple cave runner game written in Python using Pygame
 ## TODO
 
 * Upload video, screenshot
-* Add window icon
-* PyInstaller
+* Create executable
