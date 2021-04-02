@@ -15,8 +15,8 @@ Simple cave runner game written in Python using Pygame
 |--------|-------------------------------|
 | Space  | Apply thrust, Start game      |
 | Escape | Pause/unpause, Return to menu |
-| Up     | Volume up                     |
-| Down   | Volume down                   |
+| Up     | Music volume up               |
+| Down   | Music volume down             |
 | Right  | Next song                     |
 | Left   | Previous song                 |
 
