@@ -42,10 +42,7 @@ class Drawable:
     def __init__(self, img, x, y, center=False): # x, y: center or (left, top) coordinates
         width  = img.get_width()
         height = img.get_height()
-        if center:
-            origin = (x - (width / 2), y - (height / 2))
-        else:
-            origin = (x, y)
+        origin = (x - (wdith // 2), y - (height // 2)) if center else (x, y)
     
         self.img  = img
         self.rect = pygame.Rect(origin, (width, height))
