@@ -21,8 +21,6 @@ class Exhaust(Screen.Drawable):
 
         x, y = Exhaust.get_coord(spaceshipRect)
         super().__init__(imgs[0], x, y, center=True)
-
-        print(str(self.img.get_width()) + ', ' + str(self.img.get_height()))
     
     # Check if animation should move to next frame, update position
     def update(self, ts, spaceshipRect, spaceshipSpeed):

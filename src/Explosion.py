@@ -4,12 +4,15 @@ import Resources
 
 import pygame
 
-imgs = Resources.images['Explosion']
+imgs  = Resources.images['Explosion']
+sound = Resources.sounds['Explosion']
 
 FRAME_INT = 0.08 # Frame interval for animation in seconds
 
 class Explosion(Screen.Drawable):
     def __init__(self, x, y):
+        sound.play()
+
         self.sinceLastFrame = 0
         self.frameNum = 0
         self.active = True

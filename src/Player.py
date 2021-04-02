@@ -3,8 +3,8 @@ import Screen
 import Resources
 import Util
 from GameObject import GameObject
-from Explosion  import Explosion
-from Exhaust    import Exhaust
+from Explosion import Explosion
+from Exhaust import Exhaust
 
 from time import time
 from math import sqrt
@@ -16,15 +16,14 @@ ACCEL_FACTOR = 40
 SPEED_FACTOR = 20
 MAX_SPEED    = 25
 
-explosionSound = Resources.sounds['Explosion']
+img_normal = Resources.images['Spaceship']
+img_thrust = Resources.images['Spaceship_turbo']
 
 class Player(GameObject):
     SHOW_EXHAUST = True
 
     def __init__(self):
-        self.img_normal = Resources.images['Spaceship']
-        self.img_thrust = Resources.images['Spaceship_turbo']
-        super().__init__(self.img_normal, START_X, START_Y)
+        super().__init__(img_normal, START_X, START_Y)
 
         self.posY  = START_Y
         self.velY  = 0.0
@@ -49,10 +48,10 @@ class Player(GameObject):
         if self.alive:
             if Util.is_key_pressed(pygame.K_SPACE):
                 acelY = -1.0
-                self.img = self.img_thrust
+                self.img = img_thrust
             else:
                 acelY = 0.8
-                self.img = self.img_normal
+                self.img = img_normal
 
             self.velY += ACCEL_FACTOR * acelY * ts
             self.velY = Util.clamp(self.velY, -MAX_SPEED, MAX_SPEED)
@@ -71,7 +70,6 @@ class Player(GameObject):
 
         if explode:
             self.explosion = Explosion(self.rect.centerx, self.rect.centery)
-            explosionSound.play()
     
     def in_bounds(self):
         return (-10 < self.rect.bottom) and (self.rect.top < Screen.height())
