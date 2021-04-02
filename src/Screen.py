@@ -8,8 +8,12 @@ screen = None
 
 def init(width, height):
     global screen
+    set_caption('SpaceRun')
     set_icon('icon.png')
     screen = pygame.display.set_mode((width, height))
+
+def set_caption(caption):
+    pygame.display.set_caption(caption)
 
 def set_icon(fn):
     icon = pygame.image.load(Resources.get_image_path('icon', fn))
