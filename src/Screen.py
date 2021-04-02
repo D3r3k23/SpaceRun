@@ -8,11 +8,12 @@ screen = None
 
 def init(width, height):
     global screen
-
-    icon = pygame.image.load(Resources.get_image_path('icon', 'icon.png'))
-    pygame.display.set_icon(icon)
-
+    set_icon('icon.png')
     screen = pygame.display.set_mode((width, height))
+
+def set_icon(fn):
+    icon = pygame.image.load(Resources.get_image_path('icon', fn))
+    pygame.display.set_icon(icon)
 
 def width():
     return screen.get_width()
