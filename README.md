@@ -6,7 +6,8 @@ Simple cave runner game written in Python using Pygame
 ![Menu](media/menu.png?raw=true)
 ![Game](media/game.png?raw=true)
 
-### [<h3>Gameplay</h3>](https://youtu.be/1EnHiAPRfx0)
+### [Gameplay](https://youtu.be/1EnHiAPRfx0)
+===========================
 
 
 ## Controls
