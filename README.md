@@ -19,3 +19,13 @@ Simple cave runner game written in Python using Pygame
 | Down   | Music volume down             |
 | Right  | Next song                     |
 | Left   | Previous song                 |
+
+
+### Download instructions
+1. Select the thing under Releases
+2. Download the .zip archive
+3. Extract the "SpaceRun" folder from the archive
+4. Run "SpaceRun.exe" inside the SpaceRun folder
+
+### Script dependencies
+* Pygame
