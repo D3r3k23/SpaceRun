@@ -1,7 +1,7 @@
 
 # Space Run
 
-Simple cave runner game written in Python using Pygame
+#### Simple cave runner game written in Python using Pygame
 
 ![Menu](media/menu.png?raw=true)
 ![Game](media/game.png?raw=true)
