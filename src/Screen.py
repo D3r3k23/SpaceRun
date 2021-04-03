@@ -8,7 +8,7 @@ screen = None
 
 def init(width, height):
     global screen
-    set_caption('SpaceRun')
+    set_caption('Space Run')
     set_icon('icon.png')
     screen = pygame.display.set_mode((width, height))
 

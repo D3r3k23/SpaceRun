@@ -10,7 +10,7 @@ from time import time
 from math import sqrt
 import pygame
 
-START_X, START_Y = 200, 120
+START_X, START_Y = 240, 120
 
 ACCEL_FACTOR = 40
 SPEED_FACTOR = 20
