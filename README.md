@@ -22,11 +22,11 @@
 | Left   | Previous song                 |
 
 
-### Download instructions
+## Download instructions
 1. Select the thing under Releases
 2. Download the file "SpaceRun_v1.0.zip"
 3. Extract the SpaceRun folder from the archive
 4. Run the SpaceRun executable inside the SpaceRun folder
 
-### Script dependencies
+## Script dependencies
 * Pygame
