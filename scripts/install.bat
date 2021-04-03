@@ -1,15 +1,11 @@
 
 @echo off
 
-venv\Scripts\activate
+@REM venv\Scripts\activate
 
-python scripts\setup.py py2exe
+pyinstaller src\Main.py --name SpaceRun --windowed --onedir --specpath pyinstaller --distpath pyinstaller\dist --workpath pyinstaller\build -y
 
-REM pyinstaller src\Main.py
-    REM --name CaveRun 
-    REM --noconfirm ^
-    REM --distpath pyinstaller\dist ^
-    REM --workpath pyinstaller\build ^
-    REM --specpath pyinstaller ^
-    
-deactivate
+@REM src\Main.py --name SpaceRun --noconfirm --icon resources\images\icon\icon.ico
+@REM --distpath pyinstaller\dist --workpath pyinstaller\build --specpath pyinstaller
+
+@REM venv\Scripts\deactivate
