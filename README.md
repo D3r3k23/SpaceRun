@@ -19,8 +19,3 @@ Simple cave runner game written in Python using Pygame
 | Down   | Music volume down             |
 | Right  | Next song                     |
 | Left   | Previous song                 |
-
-
-## TODO
-
-* Create executable

@@ -2,7 +2,9 @@
 /.vscode/
 /.VSCodeCounter/
 /venv/
+
 /pyinstaller/
+/package/
 
 /resources/music/
 
