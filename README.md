@@ -24,7 +24,7 @@
 ## Download instructions
 
 1. Select the thing under Releases
-2. Download the file SpaceRun_v1.0.zip for your OS
+2. Download the file SpaceRun_v1.x.zip for your OS
 3. Extract the SpaceRun folder from the archive
 4. Run the SpaceRun executable inside the SpaceRun folder
 
