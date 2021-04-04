@@ -1,4 +1,5 @@
 
+@REM Pyinstaller build
 @REM MUST FIRST ACTIVATE VIRTUALENV
 
 @echo off
