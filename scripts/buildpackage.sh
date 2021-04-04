@@ -1,12 +1,15 @@
 
 executable="pyinstaller/dist/SpaceRun"
-package="package/SpaceRun"
-
-mkdir -p $package
+package_dir="package/SpaceRun/"
 
 if [[ -f $executable ]]; then
-    cp -f $executable $package
-    cp -f -r resources $package
+    if [[ -d $package_dir ]]; then
+        rm -rf $package_dir
+    fi
+    mkdir $package_dir
+
+    cp $executable $package_dir
+    cp -r resources ${package_dir}/resources
 else
     echo "No executable found."
 fi
