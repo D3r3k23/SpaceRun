@@ -1,4 +1,6 @@
 
+@REM Creates package directory with executable and resource files
+
 @echo off
 
 set executable="pyinstaller\dist\SpaceRun.exe"
