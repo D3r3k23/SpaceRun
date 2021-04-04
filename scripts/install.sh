@@ -1,4 +1,5 @@
 
+# Pyinstaller build
 # Must activate virtualenv first
 
 pyinstaller src/Main.py            \
