@@ -125,7 +125,7 @@ class Game:
         newFrameTime = time()
         ts = newFrameTime - self.prevFrameTime
         self.prevFrameTime = newFrameTime
-        return min(ts, MAX_TS)
+        return Util.clamp(ts, 0, MAX_TS)
     
     # Move asteroids and update player score
     def update_asteroids(self, ts):
