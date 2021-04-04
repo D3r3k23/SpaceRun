@@ -32,7 +32,7 @@ class Asteroid(GameObject):
             angle = random.randint(0, 35) * 10
             img = pygame.transform.rotate(img, angle)
 
-        self.posX = Screen.width() + (img.get_width() / 2)
+        self.posX = Screen.width() + (img.get_width() // 2)
         self.velX = spec.speed
 
         self.pastPlayer = False

@@ -36,3 +36,10 @@ def handle_event(event):
             return True
 
     return False # Event not handled
+
+def set_caption(caption):
+    pygame.display.set_caption(caption)
+
+def set_icon(fn):
+    icon = pygame.image.load(Resources.get_image_path('icon', fn))
+    pygame.display.set_icon(icon)

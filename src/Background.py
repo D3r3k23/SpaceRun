@@ -23,7 +23,7 @@ class Background:
         self.dividerY = 0
     
     def set_speed(self, speed):
-        self.scrollInt = 1 / speed
+        self.scrollInt = 1 / speed # scrollInt: s/pix
 
     def scroll(self):
         if self.dir == Background.ScrollDir.DOWN:

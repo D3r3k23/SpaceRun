@@ -9,7 +9,6 @@
 ## [Gameplay](https://youtu.be/1EnHiAPRfx0)
 
 
-
 ## Controls
 
 | Button | Function                      |
@@ -23,10 +22,12 @@
 
 
 ## Download instructions
+
 1. Select the thing under Releases
 2. Download the file SpaceRun_v1.0.zip for your OS
 3. Extract the SpaceRun folder from the archive
 4. Run the SpaceRun executable inside the SpaceRun folder
 
 ## Script dependencies
+
 * Pygame

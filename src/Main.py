@@ -12,6 +12,10 @@ pygame.init()
 
 #-------- User setup --------#
 
+import App
+App.set_caption('Space Run')
+App.set_icon('icon.png')
+
 import Screen
 Screen.init(1280, 720)
 
@@ -20,7 +24,6 @@ Resources.load()
 
 #-------- Run app --------#
 
-import App
 from Menu import Menu
 from Game import Game
 

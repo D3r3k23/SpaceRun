@@ -26,7 +26,7 @@ class Player(GameObject):
         super().__init__(img_normal, START_X, START_Y)
 
         self.posY  = START_Y
-        self.velY  = 0.0
+        self.velY  = 0.0 # pix/s
 
         self.score = 0
         self.alive = True
@@ -47,20 +47,20 @@ class Player(GameObject):
     def update(self, ts):
         if self.alive:
             if Util.is_key_pressed(pygame.K_SPACE):
-                acelY = -1.0
+                acelY = -1.0 # pix/s/s
                 self.img = img_thrust
             else:
-                acelY = 0.8
+                acelY = 0.8 # pix/s/s
                 self.img = img_normal
 
             self.velY += ACCEL_FACTOR * acelY * ts
             self.velY = Util.clamp(self.velY, -MAX_SPEED, MAX_SPEED)
-            dy = SPEED_FACTOR * self.velY * ts
+            dy = SPEED_FACTOR * self.velY * ts # Pixels to move
 
             self.posY += dy
             self.rect.centery = round(self.posY)
 
-            self.exhaust.update(ts, self.rect, self.get_speed())
+            self.exhaust.update(ts, self.rect, self.get_speed_factor())
         
         elif self.explosion is not None:
             self.explosion.update(ts)
@@ -81,5 +81,6 @@ class Player(GameObject):
         self.score += 1
         return self.score
     
-    def get_speed(self):
+    # Vaale of about 1.0-2.0, used for background, asteroid, exhuast speed, and asteroid spawn rate
+    def get_speed_factor(self):
         return sqrt((self.score // 5) / 2) / 10 + 1

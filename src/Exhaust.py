@@ -8,7 +8,8 @@ imgs = Resources.images['Exhaust']
 for i, img in enumerate(imgs):
     imgs[i] = pygame.transform.scale(img, (56, 56))
 
-FRAME_INT = 0.24
+FRAME_INT  = 0.24 # Time interval for each frame
+IMG_OFFSET = 15   # Offest from Spaceship
 
 class Exhaust(Screen.Drawable):
     def __init__(self, spaceshipRect):
@@ -33,7 +34,7 @@ class Exhaust(Screen.Drawable):
     
     @staticmethod
     def get_coord(spaceshipRect):
-        return (spaceshipRect.left - 15, spaceshipRect.centery)
+        return (spaceshipRect.left - IMG_OFFSET, spaceshipRect.centery)
 
     def next_frame(self):
         self.sinceLastFrame = 0
