@@ -1,4 +1,6 @@
 
+#  Creates package directory with executable and resource files
+
 executable="pyinstaller/dist/SpaceRun"
 package_dir="package/SpaceRun"
 
