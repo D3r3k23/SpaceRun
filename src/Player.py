@@ -67,7 +67,6 @@ class Player(GameObject):
     
     def kill(self, explode=False):
         self.alive = False
-
         if explode:
             self.explosion = Explosion(self.rect.centerx, self.rect.centery)
     
