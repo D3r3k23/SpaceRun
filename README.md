@@ -6,7 +6,7 @@
 ![Menu](media/menu.png?raw=true)
 ![Game](media/game.png?raw=true)
 
-### [Gameplay(youtube.com)](https://youtu.be/1EnHiAPRfx0)
+### [Gameplay (youtube.com)](https://youtu.be/1EnHiAPRfx0)
 
 
 ## Controls
