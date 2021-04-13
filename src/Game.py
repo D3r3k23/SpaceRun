@@ -61,8 +61,7 @@ class Game:
                     if self.check_asteroid_spawn(ts):
                         self.spawn_asteroid()
                 
-                if not self.godMode:
-                    self.handle_collisions()
+                self.handle_collisions()
                 
                 background.scroll()
                 self.render()
@@ -115,10 +114,11 @@ class Game:
         if self.player.alive:
             if not self.player.in_bounds():
                 self.game_over(crash=False)
-        
-            for asteroid in self.asteroids:
-                if GameObject.collision(asteroid, self.player):
-                    self.game_over(crash=True)
+            
+            if not self.godMode:
+                for asteroid in self.asteroids:
+                    if GameObject.collision(asteroid, self.player):
+                        self.game_over(crash=True)
     
     # Time since last frame in seconds
     def get_timestep(self):
