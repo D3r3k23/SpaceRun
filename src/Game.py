@@ -112,10 +112,10 @@ class Game:
     
     # Handles player out-of-bounds and collisions
     def handle_collisions(self):
-        if not self.player.in_bounds():
-            self.game_over(crash=False)
-        
         if self.player.alive:
+            if not self.player.in_bounds():
+                self.game_over(crash=False)
+        
             for asteroid in self.asteroids:
                 if GameObject.collision(asteroid, self.player):
                     self.game_over(crash=True)
