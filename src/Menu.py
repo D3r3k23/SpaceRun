@@ -42,7 +42,6 @@ class Menu:
 
     def render(self):
         background.draw()
-
         titleText.draw()
         playButton.draw()
         exitButton.draw()
