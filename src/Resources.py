@@ -101,16 +101,18 @@ def load_sounds():
     pygame.mixer.set_reserved(1)
 
 def load_music():
-    music.add_song(get_song_path('The Prototypes - Pale Blue Dot.ogg'))
-    music.add_song(get_song_path('Teddy Killerz - Outer Space.ogg'))
-    music.add_song(get_song_path('Phace & Misanthrop - Desert Orgy.ogg'))
-    music.add_song(get_song_path('Mefjus & Break - Out Of Time.ogg'))
-    music.add_song(get_song_path('Current Value - Dark Rain.ogg'))
-    music.add_song(get_song_path('Noisia - Facade.ogg'))
-    music.add_song(get_song_path('Fortran - Alien Girl.ogg'))
-    music.add_song(get_song_path('Ed Rush & Optical - Mystery Machine.ogg'))
-    music.add_song(get_song_path('Ed Rush & Optical - Fixation.ogg'))
-    music.add_song(get_song_path('Andy C - Quest (Bladerunner Remix).ogg'))
+    music.add_song(get_song_path('Mr. Krabs Radio Song.ogg'))
+
+    # music.add_song(get_song_path('The Prototypes - Pale Blue Dot.ogg'))
+    # music.add_song(get_song_path('Teddy Killerz - Outer Space.ogg'))
+    # music.add_song(get_song_path('Phace & Misanthrop - Desert Orgy.ogg'))
+    # music.add_song(get_song_path('Mefjus & Break - Out Of Time.ogg'))
+    # music.add_song(get_song_path('Current Value - Dark Rain.ogg'))
+    # music.add_song(get_song_path('Noisia - Facade.ogg'))
+    # music.add_song(get_song_path('Fortran - Alien Girl.ogg'))
+    # music.add_song(get_song_path('Ed Rush & Optical - Mystery Machine.ogg'))
+    # music.add_song(get_song_path('Ed Rush & Optical - Fixation.ogg'))
+    # music.add_song(get_song_path('Andy C - Quest (Bladerunner Remix).ogg'))
 
 def load_fonts():
     fonts['SpaceSquadron'] = get_font_path('space_squadron.ttf')
