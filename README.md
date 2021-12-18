@@ -6,6 +6,8 @@
 ![Menu](media/menu.png?raw=true)
 ![Game](media/game.png?raw=true)
 
+### [Download](https://d3r3k23.itch.io/spacerun)
+
 ### [Gameplay (youtube.com)](https://youtu.be/1EnHiAPRfx0)
 
 
