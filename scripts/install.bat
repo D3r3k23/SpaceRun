@@ -16,4 +16,4 @@ pyinstaller src\Main.py            ^
 
     @REM --icon resources\images\icon\icon.ico ^
     @REM **** Have to manually set the icon for now ****
-    
+
